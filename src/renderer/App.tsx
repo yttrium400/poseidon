@@ -77,12 +77,12 @@ function App() {
     };
 
     return (
-        <div className="flex h-screen w-full bg-surface overflow-hidden font-sans">
-            {/* Sidebar */}
+        <div className="h-screen w-full bg-surface overflow-hidden font-sans">
+            {/* Floating Sidebar */}
             <Sidebar />
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col h-full relative overflow-hidden">
+            <main className="flex flex-col h-full relative overflow-hidden">
                 {/* Draggable Title Bar Area (for Electron) */}
                 <div className="h-12 shrink-0 flex items-center justify-center" style={{ WebkitAppRegion: 'drag' } as React.CSSProperties}>
                     <span className="text-xs text-text-tertiary font-medium">

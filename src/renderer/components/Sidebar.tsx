@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { cn } from '../lib/utils';
 import {
     Compass,
@@ -14,6 +14,8 @@ import {
     Star,
     MoreHorizontal,
     Zap,
+    Pin,
+    PinOff,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -35,8 +37,11 @@ interface FavoriteItem {
 }
 
 export function Sidebar({ className }: SidebarProps) {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isPinned, setIsPinned] = useState(false);
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
 
     const navItems: NavItem[] = [
         { icon: Compass, label: 'Discover', active: true },
@@ -57,42 +62,78 @@ export function Sidebar({ className }: SidebarProps) {
         { label: 'Tailwind CSS', url: 'tailwindcss.com' },
     ];
 
-    return (
-        <aside
-            className={cn(
-                "glass-panel relative flex flex-col h-full transition-all duration-300 ease-smooth z-50",
-                isCollapsed ? "w-[72px]" : "w-[260px]",
-                className
-            )}
-        >
-            {/* macOS Traffic Light Space */}
-            <div className="h-3" />
+    // Handle mouse entering the trigger zone or sidebar
+    const handleMouseEnter = () => {
+        setIsVisible(true);
+    };
 
-            {/* Header */}
-            <header
+    // Handle mouse leaving - only hide if not pinned
+    const handleMouseLeave = () => {
+        if (!isPinned) {
+            setIsVisible(false);
+        }
+    };
+
+    // Keyboard shortcut to toggle sidebar (Cmd/Ctrl + \)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
+                e.preventDefault();
+                setIsPinned(prev => !prev);
+                setIsVisible(prev => !prev);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
+    return (
+        <>
+            {/* Hover Trigger Zone - invisible strip on left edge */}
+            <div
+                ref={triggerRef}
+                className="fixed left-0 top-0 w-4 h-full z-[100]"
+                onMouseEnter={handleMouseEnter}
+            />
+
+            {/* Backdrop - subtle overlay when sidebar is open */}
+            <div
                 className={cn(
-                    "flex items-center h-14 px-4 transition-all duration-300",
-                    isCollapsed ? "justify-center px-3" : "justify-between"
+                    "fixed inset-0 bg-black/5 backdrop-blur-[1px] z-40 transition-opacity duration-300",
+                    isVisible && !isPinned ? "opacity-100" : "opacity-0 pointer-events-none"
+                )}
+                onClick={() => !isPinned && setIsVisible(false)}
+            />
+
+            {/* Floating Sidebar */}
+            <aside
+                ref={sidebarRef}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className={cn(
+                    "fixed left-3 top-3 bottom-3 w-[280px] z-50",
+                    "bg-white/95 backdrop-blur-2xl",
+                    "rounded-2xl border border-border/60",
+                    "shadow-large",
+                    "flex flex-col",
+                    "transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
+                    isVisible
+                        ? "translate-x-0 opacity-100"
+                        : "-translate-x-[calc(100%+20px)] opacity-0",
+                    className
                 )}
             >
-                {/* Logo */}
-                <div className={cn(
-                    "flex items-center gap-2.5 transition-all duration-300",
-                    isCollapsed && "justify-center"
-                )}>
-                    <div className="relative group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-brand to-accent-violet rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
-                        <div className={cn(
-                            "relative flex items-center justify-center rounded-xl bg-gradient-to-br from-brand to-accent-violet shadow-lg transition-all duration-300",
-                            isCollapsed ? "h-10 w-10" : "h-8 w-8"
-                        )}>
-                            <Zap className={cn(
-                                "text-white transition-all",
-                                isCollapsed ? "h-5 w-5" : "h-4 w-4"
-                            )} />
+                {/* Header */}
+                <header className="flex items-center justify-between h-14 px-4 border-b border-border/40">
+                    {/* Logo */}
+                    <div className="flex items-center gap-2.5">
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-brand to-accent-violet rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
+                            <div className="relative flex items-center justify-center h-8 w-8 rounded-xl bg-gradient-to-br from-brand to-accent-violet shadow-lg">
+                                <Zap className="h-4 w-4 text-white" />
+                            </div>
                         </div>
-                    </div>
-                    {!isCollapsed && (
                         <div className="flex flex-col">
                             <span className="font-semibold text-sm text-text-primary tracking-tight">
                                 Poseidon
@@ -101,60 +142,55 @@ export function Sidebar({ className }: SidebarProps) {
                                 Agent Browser
                             </span>
                         </div>
-                    )}
-                </div>
-
-                {/* Collapse Toggle */}
-                {!isCollapsed && (
-                    <button
-                        onClick={() => setIsCollapsed(true)}
-                        className="btn-icon opacity-0 group-hover:opacity-100 hover:opacity-100"
-                    >
-                        <ChevronLeft className="h-4 w-4" />
-                    </button>
-                )}
-            </header>
-
-            {/* New Tab Button */}
-            <div className="px-3 mt-2 mb-4">
-                <button
-                    className={cn(
-                        "group flex items-center w-full gap-3 rounded-xl bg-surface-tertiary border border-transparent",
-                        "transition-all duration-200 ease-smooth",
-                        "hover:bg-brand-muted hover:border-brand/20 hover:shadow-soft",
-                        "active:scale-[0.98]",
-                        isCollapsed ? "justify-center p-3" : "px-3 py-2.5"
-                    )}
-                >
-                    <div className={cn(
-                        "flex items-center justify-center rounded-lg bg-white shadow-soft border border-border/50",
-                        "group-hover:bg-brand group-hover:border-brand group-hover:shadow-brand",
-                        "transition-all duration-200",
-                        isCollapsed ? "h-8 w-8" : "h-7 w-7"
-                    )}>
-                        <Plus className={cn(
-                            "text-text-secondary group-hover:text-white transition-colors",
-                            isCollapsed ? "h-4 w-4" : "h-3.5 w-3.5"
-                        )} />
                     </div>
-                    {!isCollapsed && (
+
+                    {/* Pin Toggle */}
+                    <button
+                        onClick={() => setIsPinned(!isPinned)}
+                        className={cn(
+                            "btn-icon h-8 w-8",
+                            isPinned && "bg-brand-muted text-brand"
+                        )}
+                        title={isPinned ? "Unpin sidebar (⌘\\)" : "Pin sidebar (⌘\\)"}
+                    >
+                        {isPinned ? (
+                            <Pin className="h-4 w-4" />
+                        ) : (
+                            <PinOff className="h-4 w-4" />
+                        )}
+                    </button>
+                </header>
+
+                {/* New Tab Button */}
+                <div className="px-3 py-3">
+                    <button
+                        className={cn(
+                            "group flex items-center w-full gap-3 rounded-xl bg-surface-tertiary border border-transparent px-3 py-2.5",
+                            "transition-all duration-200 ease-smooth",
+                            "hover:bg-brand-muted hover:border-brand/20 hover:shadow-soft",
+                            "active:scale-[0.98]"
+                        )}
+                    >
+                        <div className={cn(
+                            "flex items-center justify-center h-7 w-7 rounded-lg bg-white shadow-soft border border-border/50",
+                            "group-hover:bg-brand group-hover:border-brand group-hover:shadow-brand",
+                            "transition-all duration-200"
+                        )}>
+                            <Plus className="h-3.5 w-3.5 text-text-secondary group-hover:text-white transition-colors" />
+                        </div>
                         <span className="text-sm font-medium text-text-secondary group-hover:text-brand-dark">
                             New Tab
                         </span>
-                    )}
-                    {!isCollapsed && (
                         <span className="ml-auto kbd">
                             <span className="text-[9px]">⌘</span>T
                         </span>
-                    )}
-                </button>
-            </div>
+                    </button>
+                </div>
 
-            {/* Search */}
-            {!isCollapsed && (
-                <div className="px-3 mb-4">
+                {/* Search */}
+                <div className="px-3 pb-3">
                     <button
-                        className="flex items-center w-full gap-3 px-3 py-2 rounded-xl
+                        className="flex items-center w-full gap-3 px-3 py-2.5 rounded-xl
                                    bg-surface-secondary border border-border/60
                                    text-text-tertiary text-sm
                                    transition-all duration-200 ease-smooth
@@ -167,70 +203,45 @@ export function Sidebar({ className }: SidebarProps) {
                         </span>
                     </button>
                 </div>
-            )}
 
-            {isCollapsed && (
-                <div className="px-3 mb-4 flex justify-center">
-                    <button className="btn-icon">
-                        <Search className="h-4 w-4" />
-                    </button>
-                </div>
-            )}
-
-            {/* Scrollable Content */}
-            <nav className="flex-1 overflow-y-auto overflow-x-hidden thin-scrollbar px-3 space-y-6">
-                {/* Main Navigation */}
-                <section>
-                    {!isCollapsed && (
+                {/* Scrollable Content */}
+                <nav className="flex-1 overflow-y-auto overflow-x-hidden thin-scrollbar px-3 space-y-5 pb-3">
+                    {/* Main Navigation */}
+                    <section>
                         <h2 className="px-3 mb-2 text-[11px] font-semibold text-text-tertiary uppercase tracking-wider">
                             Navigate
                         </h2>
-                    )}
-                    <ul className="space-y-1">
-                        {navItems.map((item, index) => (
-                            <li key={index}>
-                                <button
-                                    onMouseEnter={() => setHoveredItem(item.label)}
-                                    onMouseLeave={() => setHoveredItem(null)}
-                                    className={cn(
-                                        "nav-item w-full group relative",
-                                        item.active && "nav-item-active",
-                                        isCollapsed && "justify-center px-0 py-3"
-                                    )}
-                                    title={isCollapsed ? item.label : undefined}
-                                >
-                                    <item.icon
+                        <ul className="space-y-0.5">
+                            {navItems.map((item, index) => (
+                                <li key={index}>
+                                    <button
+                                        onMouseEnter={() => setHoveredItem(item.label)}
+                                        onMouseLeave={() => setHoveredItem(null)}
                                         className={cn(
-                                            "h-[18px] w-[18px] shrink-0 transition-colors nav-icon",
-                                            item.active ? "text-brand" : "text-text-secondary group-hover:text-text-primary"
+                                            "nav-item w-full group relative",
+                                            item.active && "nav-item-active"
                                         )}
-                                    />
-                                    {!isCollapsed && (
-                                        <>
-                                            <span className="truncate">{item.label}</span>
-                                            {item.badge && (
-                                                <span className="ml-auto badge badge-brand">
-                                                    {item.badge}
-                                                </span>
+                                    >
+                                        <item.icon
+                                            className={cn(
+                                                "h-[18px] w-[18px] shrink-0 transition-colors nav-icon",
+                                                item.active ? "text-brand" : "text-text-secondary group-hover:text-text-primary"
                                             )}
-                                        </>
-                                    )}
+                                        />
+                                        <span className="truncate">{item.label}</span>
+                                        {item.badge && (
+                                            <span className="ml-auto badge badge-brand">
+                                                {item.badge}
+                                            </span>
+                                        )}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
 
-                                    {/* Tooltip for collapsed state */}
-                                    {isCollapsed && hoveredItem === item.label && (
-                                        <div className="absolute left-full ml-2 px-2.5 py-1.5 bg-text-primary text-white text-xs font-medium rounded-lg shadow-lg whitespace-nowrap z-50 animate-fade-in">
-                                            {item.label}
-                                        </div>
-                                    )}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-
-                {/* Favorites Section */}
-                <section>
-                    {!isCollapsed && (
+                    {/* Favorites Section */}
+                    <section>
                         <div className="flex items-center justify-between px-3 mb-2">
                             <h2 className="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider">
                                 Favorites
@@ -239,39 +250,27 @@ export function Sidebar({ className }: SidebarProps) {
                                 <Plus className="h-3 w-3" />
                             </button>
                         </div>
-                    )}
-                    <ul className="space-y-0.5">
-                        {favorites.map((item, index) => (
-                            <li key={index}>
-                                <button
-                                    className={cn(
-                                        "nav-item w-full group",
-                                        isCollapsed && "justify-center px-0 py-3"
-                                    )}
-                                    title={isCollapsed ? item.label : undefined}
-                                >
-                                    <div
-                                        className="h-5 w-5 rounded-md flex items-center justify-center text-[10px] font-bold text-white shrink-0"
-                                        style={{ backgroundColor: item.color || '#6B7280' }}
-                                    >
-                                        {item.label[0]}
-                                    </div>
-                                    {!isCollapsed && (
-                                        <>
-                                            <span className="truncate">{item.label}</span>
-                                            <span className="ml-auto text-[11px] text-text-tertiary opacity-0 group-hover:opacity-100 transition-opacity">
-                                                {item.url}
-                                            </span>
-                                        </>
-                                    )}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
+                        <ul className="space-y-0.5">
+                            {favorites.map((item, index) => (
+                                <li key={index}>
+                                    <button className="nav-item w-full group">
+                                        <div
+                                            className="h-5 w-5 rounded-md flex items-center justify-center text-[10px] font-bold text-white shrink-0"
+                                            style={{ backgroundColor: item.color || '#6B7280' }}
+                                        >
+                                            {item.label[0]}
+                                        </div>
+                                        <span className="truncate">{item.label}</span>
+                                        <span className="ml-auto text-[11px] text-text-tertiary opacity-0 group-hover:opacity-100 transition-opacity">
+                                            {item.url}
+                                        </span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
 
-                {/* Recent Tabs */}
-                {!isCollapsed && (
+                    {/* Recent Tabs */}
                     <section>
                         <div className="flex items-center justify-between px-3 mb-2">
                             <h2 className="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider">
@@ -295,36 +294,18 @@ export function Sidebar({ className }: SidebarProps) {
                             ))}
                         </ul>
                     </section>
-                )}
-            </nav>
+                </nav>
 
-            {/* Footer */}
-            <footer className="p-3 border-t border-border/60 space-y-1">
-                {/* Settings */}
-                <button
-                    className={cn(
-                        "nav-item w-full",
-                        isCollapsed && "justify-center px-0 py-3"
-                    )}
-                    title={isCollapsed ? "Settings" : undefined}
-                >
-                    <Settings className="h-[18px] w-[18px] shrink-0" />
-                    {!isCollapsed && <span>Settings</span>}
-                </button>
-
-                {/* Expand Toggle (only when collapsed) */}
-                {isCollapsed && (
-                    <button
-                        onClick={() => setIsCollapsed(false)}
-                        className="nav-item w-full justify-center px-0 py-3"
-                    >
-                        <ChevronRight className="h-4 w-4" />
+                {/* Footer */}
+                <footer className="p-3 border-t border-border/40 space-y-1">
+                    {/* Settings */}
+                    <button className="nav-item w-full">
+                        <Settings className="h-[18px] w-[18px] shrink-0" />
+                        <span>Settings</span>
                     </button>
-                )}
 
-                {/* User / Status (only when expanded) */}
-                {!isCollapsed && (
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-xl">
+                    {/* User / Status */}
+                    <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-tertiary transition-colors cursor-pointer">
                         <div className="relative">
                             <div className="h-8 w-8 rounded-full bg-gradient-to-br from-accent-emerald to-accent-blue flex items-center justify-center text-white text-xs font-semibold">
                                 U
@@ -339,8 +320,8 @@ export function Sidebar({ className }: SidebarProps) {
                             <MoreHorizontal className="h-4 w-4" />
                         </button>
                     </div>
-                )}
-            </footer>
-        </aside>
+                </footer>
+            </aside>
+        </>
     );
 }
