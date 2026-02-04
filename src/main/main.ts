@@ -34,7 +34,7 @@ let tabIdCounter = 0
 
 // UI bounds configuration
 const UI_TOP_HEIGHT = 52 // URL bar height
-const UI_SIDEBAR_WIDTH = 0 // Sidebar is floating, doesn't take space
+const UI_SIDEBAR_TRIGGER_WIDTH = 16 // Width of hover zone for sidebar
 
 // ============================================
 // Utility Functions
@@ -48,9 +48,9 @@ function getBrowserViewBounds(): Electron.Rectangle {
     if (!win) return { x: 0, y: 0, width: 800, height: 600 }
     const { width, height } = win.getContentBounds()
     return {
-        x: UI_SIDEBAR_WIDTH,
+        x: UI_SIDEBAR_TRIGGER_WIDTH,
         y: UI_TOP_HEIGHT,
-        width: width - UI_SIDEBAR_WIDTH,
+        width: width - UI_SIDEBAR_TRIGGER_WIDTH,
         height: height - UI_TOP_HEIGHT
     }
 }
@@ -334,7 +334,8 @@ function toggleAdBlocker(enabled: boolean): void {
 function setupIPC(): void {
     // Tab management
     ipcMain.handle('create-tab', (_, url?: string) => {
-        const tab = createTab(url || 'about:blank')
+        // Use createTab's default (poseidon://newtab) when no URL provided
+        const tab = url ? createTab(url) : createTab()
         switchToTab(tab.id)
         return { id: tab.id }
     })

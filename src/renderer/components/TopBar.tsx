@@ -41,7 +41,8 @@ export function TopBar({ className }: TopBarProps) {
             window.electron.tabs.getActive().then(tab => {
                 setActiveTab(tab);
                 // Don't show internal URLs in the search bar
-                if (tab && !tab.url.startsWith('poseidon://')) {
+                const isInternalUrl = tab?.url.startsWith('poseidon://') || tab?.url.startsWith('about:');
+                if (tab && !isInternalUrl) {
                     setInputValue(tab.url);
                 }
             });
@@ -49,9 +50,10 @@ export function TopBar({ className }: TopBarProps) {
             // Listen for active tab changes
             const unsubscribe = window.electron.tabs.onActiveTabChanged((tab) => {
                 setActiveTab(tab);
-                if (tab && !isEditing && !tab.url.startsWith('poseidon://')) {
+                const isInternalUrl = tab?.url.startsWith('poseidon://') || tab?.url.startsWith('about:');
+                if (tab && !isEditing && !isInternalUrl) {
                     setInputValue(tab.url);
-                } else if (tab?.url.startsWith('poseidon://')) {
+                } else if (isInternalUrl) {
                     setInputValue('');
                 }
             });
@@ -60,8 +62,12 @@ export function TopBar({ className }: TopBarProps) {
             const unsubscribeUpdate = window.electron.tabs.onTabUpdated((tab) => {
                 if (activeTab && tab.id === activeTab.id) {
                     setActiveTab(prev => prev ? { ...prev, ...tab } : null);
-                    if (!isEditing) {
+                    // Don't show internal URLs in the search bar
+                    const isInternalUrl = tab.url.startsWith('poseidon://') || tab.url.startsWith('about:');
+                    if (!isEditing && !isInternalUrl) {
                         setInputValue(tab.url);
+                    } else if (isInternalUrl) {
+                        setInputValue('');
                     }
                 }
             });
