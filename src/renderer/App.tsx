@@ -16,6 +16,7 @@ function App() {
     const [isReady, setIsReady] = useState(false);
     const [tabs, setTabs] = useState<Tab[]>([]);
     const [activeTabId, setActiveTabId] = useState<string | null>(null);
+    const [preloadPath, setPreloadPath] = useState<string>('');
     const webviewRefs = useRef<Map<string, Electron.WebviewTag>>(new Map());
 
     const activeTab = tabs.find(t => t.id === activeTabId);
@@ -24,6 +25,14 @@ function App() {
     useEffect(() => {
         if (typeof window !== 'undefined' && window.electron) {
             setIsReady(true);
+
+            // Fetch ad blocker preload path
+            window.electron.adBlock.getPreloadPath().then(path => {
+                if (path) {
+                    console.log('Ad blocker preload path:', path);
+                    setPreloadPath(`file://${path}`);
+                }
+            });
 
             // Get initial tabs
             window.electron.tabs.getAll().then((initialTabs: Tab[]) => {
@@ -150,6 +159,7 @@ function App() {
                                     key={tab.id}
                                     ref={getWebviewRef(tab.id)}
                                     src={tab.url}
+                                    preload={preloadPath}
                                     className={cn(
                                         "absolute inset-0 w-full h-full",
                                         tab.id !== activeTabId && "hidden"

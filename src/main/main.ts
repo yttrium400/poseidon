@@ -500,6 +500,17 @@ function setupIPC(): void {
         return { blockedCount, httpsUpgradeCount }
     })
 
+    ipcMain.handle('get-adblock-preload-path', () => {
+        try {
+            // Resolve the path to the adblocker's preload script
+            // This script handles cosmetic filtering (hiding ads) in the renderer
+            return require.resolve('@ghostery/adblocker-electron-preload')
+        } catch (error) {
+            console.error('Failed to resolve adblock preload path:', error)
+            return ''
+        }
+    })
+
     // Sidebar state tracking (no bounds adjustment - sidebar floats over)
     ipcMain.handle('sidebar-set-open', (_, isOpen: boolean) => {
         sidebarOpen = isOpen

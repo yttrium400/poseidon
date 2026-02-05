@@ -167,9 +167,12 @@ export function TopBar({ className }: TopBarProps) {
             console.error('Failed to fetch search suggestions:', err);
         }
 
-        setSuggestions(results);
-        setShowSuggestions(results.length > 0);
-        setSelectedIndex(-1);
+        // Only show suggestions if input is still focused
+        if (document.activeElement === inputRef.current) {
+            setSuggestions(results);
+            setShowSuggestions(results.length > 0);
+            setSelectedIndex(-1);
+        }
     }, []);
 
     // Debounced input handler

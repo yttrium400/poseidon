@@ -213,6 +213,22 @@
             "priority": "high",
             "context": "URL bar shows old URL (e.g., google.com) after clicking links to navigate to new pages. Fixed by syncing renderer <webview> state to main process via IPC.",
             "created_at": "2024-05-22T10:07:00.000000"
+        },
+        {
+            "id": "10",
+            "title": "Fix Suggestion Dropdown Persisting After Navigation",
+            "status": "completed",
+            "priority": "medium",
+            "context": "Suggestions remained open when manually typing a URL/search and pressing Enter, due to late-arriving async fetch results. Fixed by checking input focus before showing results.",
+            "created_at": "2024-05-22T12:00:00.000000"
+        }
+        {
+            "id": "11",
+            "title": "Implement Aggressive Ad & Popup Blocking for Streaming Sites",
+            "status": "pending",
+            "priority": "high",
+            "context": "Block popups and new tabs on streaming sites (football matches) using ad blocker engine logic. Similar to Brave's aggressive blocking.",
+            "created_at": "2024-05-22T14:00:00.000000"
         }
     ]
 }
