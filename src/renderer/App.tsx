@@ -139,6 +139,53 @@ function App() {
         localStorage.setItem('sidebar-pinned', isSidebarPinned.toString());
     }, [isSidebarPinned]);
 
+    // Theme handling
+    useEffect(() => {
+        const applyTheme = (theme: 'light' | 'dark' | 'system') => {
+            const root = window.document.documentElement;
+            root.classList.remove('light', 'dark');
+
+            if (theme === 'system') {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light';
+                root.classList.add(systemTheme);
+            } else {
+                root.classList.add(theme);
+            }
+        };
+
+        // Initial theme load
+        window.electron?.settings.getAll().then((settings: any) => {
+            if (settings?.theme) {
+                applyTheme(settings.theme);
+            }
+        });
+
+        // Listen for settings changes
+        const unsubscribeSettings = window.electron?.settings.onChanged((data: any) => {
+            if (data.settings?.theme) {
+                applyTheme(data.settings.theme);
+            }
+        });
+
+        // Listen for system theme changes
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleSystemChange = () => {
+            window.electron?.settings.get('theme').then((currentTheme: any) => {
+                if (currentTheme === 'system') {
+                    applyTheme('system');
+                }
+            });
+        };
+        mediaQuery.addEventListener('change', handleSystemChange);
+
+        return () => {
+            unsubscribeSettings?.();
+            mediaQuery.removeEventListener('change', handleSystemChange);
+        };
+    }, []);
+
     const activeTab = tabs.find(t => t.id === activeTabId);
     const isHomePage = activeTab?.url === 'poseidon://newtab';
     const isSettingsPage = activeTab?.url === 'poseidon://settings';

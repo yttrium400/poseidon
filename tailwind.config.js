@@ -24,41 +24,41 @@ module.exports = {
             colors: {
                 // Premium neutral palette
                 surface: {
-                    DEFAULT: '#FFFFFF',
-                    secondary: '#FAFAFA',
-                    tertiary: '#F5F5F5',
-                    elevated: '#FFFFFF',
+                    DEFAULT: 'hsl(var(--background))',
+                    secondary: 'hsl(var(--secondary))',
+                    tertiary: 'hsl(var(--muted))',
+                    elevated: 'hsl(var(--card))',
                 },
                 border: {
-                    DEFAULT: '#E8E8E8',
-                    subtle: '#F0F0F0',
-                    strong: '#D4D4D4',
+                    DEFAULT: 'hsl(var(--border))',
+                    subtle: 'hsl(var(--border) / 0.5)',
+                    strong: 'hsl(var(--input))',
                 },
                 text: {
-                    primary: '#1A1A1A',
-                    secondary: '#6B6B6B',
-                    tertiary: '#9A9A9A',
-                    inverted: '#FFFFFF',
+                    primary: 'hsl(var(--foreground))',
+                    secondary: 'hsl(var(--muted-foreground))',
+                    tertiary: 'hsl(var(--muted-foreground) / 0.7)',
+                    inverted: 'hsl(var(--background))',
                 },
                 // Brand colors - sophisticated blue-violet
                 brand: {
-                    DEFAULT: '#6366F1',
-                    light: '#818CF8',
-                    dark: '#4F46E5',
-                    muted: '#EEF2FF',
+                    DEFAULT: 'hsl(var(--primary))',
+                    light: 'color-mix(in srgb, hsl(var(--primary)), white 20%)',
+                    dark: 'color-mix(in srgb, hsl(var(--primary)), black 20%)',
+                    muted: 'hsl(var(--primary) / 0.1)',
                 },
                 // Accent colors
                 accent: {
                     blue: '#3B82F6',
                     violet: '#8B5CF6',
                     emerald: '#10B981',
-                    amber: '#F59E0B',
-                    rose: '#F43F5E',
+                    amber: 'hsl(var(--accent))',
+                    rose: 'hsl(var(--destructive))',
                 },
                 // Semantic colors
                 success: '#22C55E',
                 warning: '#EAB308',
-                error: '#EF4444',
+                error: 'hsl(var(--destructive))',
                 info: '#3B82F6',
             },
             boxShadow: {

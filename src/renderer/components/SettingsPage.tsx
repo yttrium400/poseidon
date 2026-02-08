@@ -339,8 +339,8 @@ export function SettingsPage({ className }: SettingsPageProps) {
                                         value={settings.theme}
                                         options={[
                                             { value: 'light', label: 'Light' },
-                                            { value: 'dark', label: 'Dark (Coming Soon)' },
-                                            { value: 'system', label: 'System (Coming Soon)' },
+                                            { value: 'dark', label: 'Dark' },
+                                            { value: 'system', label: 'System' },
                                         ]}
                                         onChange={(v) => updateSetting('theme', v)}
                                     />
