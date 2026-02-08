@@ -75,6 +75,11 @@ contextBridge.exposeInMainWorld('electron', {
             ipcRenderer.on('reload-active-tab', subscription)
             return () => ipcRenderer.removeListener('reload-active-tab', subscription)
         },
+        onNavigateToUrl: (callback: (data: { tabId: string; url: string }) => void) => {
+            const subscription = (_event: any, data: { tabId: string; url: string }) => callback(data)
+            ipcRenderer.on('navigate-to-url', subscription)
+            return () => ipcRenderer.removeListener('navigate-to-url', subscription)
+        },
     },
 
     // Ad Blocker
@@ -291,6 +296,7 @@ declare global {
                 reload: () => Promise<{ success: boolean }>
                 stop: () => Promise<{ success: boolean }>
                 onReloadActiveTab: (callback: () => void) => () => void
+                onNavigateToUrl: (callback: (data: { tabId: string; url: string }) => void) => () => void
             }
             adBlock: {
                 toggle: (enabled: boolean) => Promise<{ enabled: boolean }>

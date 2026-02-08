@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { cn } from '../lib/utils';
 import { CommandBar } from './CommandBar';
 import { Sparkles } from 'lucide-react';
@@ -8,54 +8,13 @@ interface HomePageProps {
 }
 
 export function HomePage({ className }: HomePageProps) {
-    const [isRunning, setIsRunning] = useState(false);
-    const [status, setStatus] = useState<'idle' | 'thinking' | 'running' | 'done' | 'error'>('idle');
-
-    const handleRunAgent = async (instruction: string) => {
+    const handleSearch = (instruction: string) => {
         const input = instruction.trim();
+        if (!input) return;
 
-        // Check if it looks like a URL (has protocol or looks like domain.tld)
-        const hasProtocol = input.startsWith('http://') || input.startsWith('https://');
-        const looksLikeUrl = /^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/.test(input);
-
-        if (hasProtocol) {
-            // Already has protocol - navigate directly
-            window.electron?.navigation.navigate(input);
-            return;
-        } else if (looksLikeUrl) {
-            // Looks like a domain (e.g., "youtube.com") - add https and navigate
-            window.electron?.navigation.navigate(`https://${input}`);
-            return;
-        }
-
-        // Otherwise, run the AI agent
-        setIsRunning(true);
-        setStatus('thinking');
-
-        try {
-            const response = await fetch('http://127.0.0.1:8000/agent/run', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ instruction }),
-            });
-
-            setStatus('running');
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                setStatus('done');
-            } else {
-                setStatus('error');
-            }
-            console.log('Agent Result:', data);
-        } catch (error) {
-            console.error('Failed to run agent:', error);
-            setStatus('error');
-        } finally {
-            setIsRunning(false);
-        }
+        // Navigate for all inputs - main process handles URL normalization
+        // and search engine selection for non-URL queries
+        window.electron?.navigation.navigate(input);
     };
 
     return (
@@ -85,9 +44,9 @@ export function HomePage({ className }: HomePageProps) {
 
                 {/* Command Bar (existing component) */}
                 <CommandBar
-                    onRun={handleRunAgent}
-                    isRunning={isRunning}
-                    status={status}
+                    onRun={handleSearch}
+                    isRunning={false}
+                    status={'idle'}
                 />
             </div>
         </div>

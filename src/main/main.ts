@@ -321,9 +321,14 @@ function navigateTab(tabId: string, url: string): void {
 
     const normalizedUrl = normalizeUrl(url)
 
-    // Update tab URL - webview in renderer handles actual navigation
+    // Update tab URL
     tab.url = normalizedUrl
     sendTabUpdate(tab)
+
+    // Tell the renderer to navigate the webview explicitly
+    if (win && !win.isDestroyed()) {
+        win.webContents.send('navigate-to-url', { tabId, url: normalizedUrl })
+    }
 }
 
 // ============================================

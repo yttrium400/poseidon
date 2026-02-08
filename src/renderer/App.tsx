@@ -127,6 +127,7 @@ function App() {
     const [preloadPath, setPreloadPath] = useState<string>('');
     const [showRealmSearch, setShowRealmSearch] = useState(false);
     const webviewRefs = useRef<Map<string, Electron.WebviewTag>>(new Map());
+    const pendingNavigation = useRef<{ tabId: string; url: string } | null>(null);
 
     // Persist sidebar pinned state
     useEffect(() => {
@@ -235,6 +236,12 @@ function App() {
 
     const handleWebviewMount = useCallback((tabId: string, element: Electron.WebviewTag) => {
         webviewRefs.current.set(tabId, element);
+        // If there's a pending navigation for this tab, execute it now
+        const pending = pendingNavigation.current;
+        if (pending && pending.tabId === tabId) {
+            pendingNavigation.current = null;
+            element.src = pending.url;
+        }
     }, []);
 
     // Navigate in active webview
@@ -289,6 +296,24 @@ function App() {
             return unsubscribe;
         }
     }, [handleReload]);
+
+    // Listen for navigate-to-url from main process (triggered by TopBar URL bar)
+    useEffect(() => {
+        if (window.electron?.navigation?.onNavigateToUrl) {
+            const unsubscribe = window.electron.navigation.onNavigateToUrl(({ tabId, url }) => {
+                if (url.startsWith('poseidon://')) return;
+                const webview = webviewRefs.current.get(tabId);
+                if (webview) {
+                    webview.src = url;
+                } else {
+                    // Webview doesn't exist yet (e.g., transitioning from home page)
+                    // Queue navigation for when WebviewController mounts
+                    pendingNavigation.current = { tabId, url };
+                }
+            });
+            return unsubscribe;
+        }
+    }, []);
 
     return (
         <div className="h-screen w-full bg-surface overflow-hidden font-sans flex flex-col">

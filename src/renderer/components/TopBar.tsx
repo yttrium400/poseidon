@@ -636,6 +636,7 @@ export function TopBar({
                     {/* Navigation Controls */}
                     <div className="flex items-center gap-1 text-text-secondary no-drag-region">
                         <button
+                            type="button"
                             onClick={onBack}
                             disabled={!canGoBack}
                             className="p-1.5 hover:bg-white/5 rounded-lg transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
@@ -643,6 +644,7 @@ export function TopBar({
                             <ArrowLeft size={18} />
                         </button>
                         <button
+                            type="button"
                             onClick={onForward}
                             disabled={!canGoForward}
                             className="p-1.5 hover:bg-white/5 rounded-lg transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
@@ -650,6 +652,7 @@ export function TopBar({
                             <ArrowRight size={18} />
                         </button>
                         <button
+                            type="button"
                             onClick={onReload}
                             className="p-1.5 hover:bg-white/5 rounded-lg transition-colors"
                         >
