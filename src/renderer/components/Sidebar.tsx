@@ -95,12 +95,35 @@ function LooseTabsDropZone({ looseTabs, activeRealmDocks, children }: LooseTabsD
         <section
             ref={setNodeRef}
             className={cn(
-                "transition-all duration-200 min-h-[60px]",
+                "transition-all duration-200 min-h-[120px]",
                 isOver && "bg-brand/5 rounded-xl ring-2 ring-brand/30"
             )}
         >
             {children}
         </section>
+    );
+}
+
+function CreateDockDropZone({ children }: { children: React.ReactNode }) {
+    const { isOver, setNodeRef } = useDroppable({
+        id: 'create-dock-dropzone',
+        data: {
+            type: 'create-dock',
+        },
+    });
+
+    return (
+        <div
+            ref={setNodeRef}
+            className={cn(
+                "mt-2 border-2 border-dashed rounded-xl transition-all duration-200 flex items-center justify-center",
+                isOver
+                    ? "border-brand bg-brand/5 h-24 opacity-100 scale-105"
+                    : "border-border/40 hover:border-brand/50 h-16 opacity-80"
+            )}
+        >
+            {children}
+        </div>
     );
 }
 
@@ -563,6 +586,19 @@ export function Sidebar({ className, isPinned, onPinnedChange, tabs, activeTabId
         } else if (overId === 'loose-tabs-dropzone') {
             // Dropped on loose tabs section
             targetContainerId = 'loose';
+        } else if (overId === 'create-dock-dropzone') {
+            // Create new dock from tab
+            const newDockName = draggedTab?.title ? `Group: ${draggedTab.title.slice(0, 15)}...` : 'New Group';
+
+            // 1. Create the dock
+            const newDock = await window.electron?.docks.create(newDockName, activeRealmId, 'folder', 'blue');
+
+            if (newDock) {
+                // 2. Move tab to the new dock
+                await window.electron?.tabOrganization.moveToDock(activeTabId, newDock.id);
+                await refreshState();
+            }
+            return;
         }
 
         if (!targetContainerId) return;
@@ -1156,6 +1192,16 @@ export function Sidebar({ className, isPinned, onPinnedChange, tabs, activeTabId
                                 </div>
                             )}
                         </LooseTabsDropZone>
+
+                        {/* Create Dock Drop Zone (only visible when dragging a tab) */}
+                        {activeId && draggedTab && !activeRealmDocks.some(d => d.id === 'create-dock-dropzone') && (
+                            <CreateDockDropZone>
+                                <div className="flex flex-col items-center gap-1 text-text-tertiary">
+                                    <FolderPlus className="h-5 w-5" />
+                                    <span className="text-xs font-medium">Drop to Create Dock</span>
+                                </div>
+                            </CreateDockDropZone>
+                        )}
                     </nav>
 
                     {/* Realm Switcher */}

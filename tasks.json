@@ -761,56 +761,56 @@
                 {
                     "id": "13.15",
                     "title": "Realm Templates",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "Pre-configured realm templates for common use cases (Developer, Social, Entertainment, etc.) with suggested docks. Users can choose a template when creating a new realm.",
                     "subtasks": [
                         {
                             "id": "13.15.1",
                             "title": "Define template data structure (name, icon, color, defaultDocks[])",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.15.2",
                             "title": "Create templates: Developer (GitHub, Docs, Stack Overflow), Social (Twitter, Reddit, Discord), Entertainment (YouTube, Netflix, Spotify), Work (Email, Calendar, Notion)",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.15.3",
                             "title": "Add template selection step in RealmModal when creating new realm",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.15.4",
                             "title": "Option to start from blank or choose template",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.15.5",
                             "title": "Auto-create docks from template on realm creation",
-                            "status": "pending"
+                            "status": "completed"
                         }
                     ]
                 },
                 {
                     "id": "13.16",
                     "title": "Tab Splitting (Drag to Create Dock)",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "When dragging a tab to an empty area or special drop zone, automatically create a new dock containing that tab. Quick way to organize without manual dock creation.",
                     "subtasks": [
                         {
                             "id": "13.16.1",
                             "title": "Add 'New Dock' drop zone that appears during tab drag",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.16.2",
                             "title": "Detect drop on 'New Dock' zone and trigger dock creation flow",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.16.3",
                             "title": "Auto-name new dock based on tab title or domain",
-                            "status": "pending"
+                            "status": "completed"
                         },
                         {
                             "id": "13.16.4",
