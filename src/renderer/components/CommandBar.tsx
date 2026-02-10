@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../lib/utils';
 import {
-    Sparkles,
     ArrowRight,
     StopCircle,
     Loader2,
@@ -251,19 +250,6 @@ export function CommandBar({ onRun, isRunning, status = 'idle' }: CommandBarProp
                 >
                     {/* Top Section - Input */}
                     <div className="flex items-start gap-3 p-4 pb-3">
-                        {/* AI Icon */}
-                        <div className={cn(
-                            "flex items-center justify-center h-10 w-10 rounded-xl shrink-0 transition-all duration-300",
-                            isRunning
-                                ? "bg-gradient-to-br from-brand to-accent-violet shadow-glow"
-                                : "bg-white/[0.06]"
-                        )}>
-                            <Sparkles className={cn(
-                                "h-5 w-5 transition-colors",
-                                isRunning ? "text-white" : "text-text-secondary"
-                            )} />
-                        </div>
-
                         {/* Input Field */}
                         <div className="flex-1 min-w-0">
                             <textarea

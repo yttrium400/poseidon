@@ -22,6 +22,7 @@ interface AppSettings {
     compactMode: boolean;
     homeBackground: 'earth-horizon' | 'gradient-mesh' | 'aurora' | 'minimal' | 'custom';
     homeBackgroundCustomUrl: string;
+    uiScale: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large';
     historyEnabled: boolean;
     historyRetentionDays: number;
     clearHistoryOnExit: boolean;
@@ -340,9 +341,9 @@ export function SettingsPage({ className }: SettingsPageProps) {
                                     <Select
                                         value={settings.theme}
                                         options={[
-                                            { value: 'light', label: 'Light' },
                                             { value: 'dark', label: 'Dark' },
-                                            { value: 'system', label: 'System' },
+                                            { value: 'light', label: 'Light (Coming Soon)' },
+                                            { value: 'system', label: 'System (Coming Soon)' },
                                         ]}
                                         onChange={(v) => updateSetting('theme', v)}
                                     />
@@ -370,6 +371,34 @@ export function SettingsPage({ className }: SettingsPageProps) {
                                         enabled={settings.compactMode}
                                         onChange={(v) => updateSetting('compactMode', v)}
                                     />
+                                </SettingRow>
+
+                                <SettingRow
+                                    label="UI Scale"
+                                    description="Adjust the overall size of the browser interface"
+                                >
+                                    <div className="flex items-center gap-1.5">
+                                        {([
+                                            { value: 'extra-small' as const, label: 'XS' },
+                                            { value: 'small' as const, label: 'S' },
+                                            { value: 'medium' as const, label: 'M' },
+                                            { value: 'large' as const, label: 'L' },
+                                            { value: 'extra-large' as const, label: 'XL' },
+                                        ]).map((scale) => (
+                                            <button
+                                                key={scale.value}
+                                                onClick={() => updateSetting('uiScale', scale.value)}
+                                                className={cn(
+                                                    "px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-150",
+                                                    settings.uiScale === scale.value
+                                                        ? "bg-brand text-white shadow-sm"
+                                                        : "bg-white/[0.06] text-text-secondary hover:bg-white/[0.08] hover:text-text-primary"
+                                                )}
+                                            >
+                                                {scale.label}
+                                            </button>
+                                        ))}
+                                    </div>
                                 </SettingRow>
                             </div>
 

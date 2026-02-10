@@ -120,6 +120,27 @@ function generateTabId(): string {
     return `tab-${++tabIdCounter}-${Date.now()}`
 }
 
+// UI Scale → Electron zoom level mapping
+const UI_SCALE_ZOOM: Record<string, number> = {
+    'extra-small': -2,
+    'small': -1,
+    'medium': 0,
+    'large': 1,
+    'extra-large': 2,
+}
+
+function applyUiScale(scale: string): void {
+    if (!win || win.isDestroyed()) return
+    const zoomLevel = UI_SCALE_ZOOM[scale] ?? -2
+    win.webContents.setZoomLevel(zoomLevel)
+    // Also apply to all webview guests
+    for (const [, tab] of tabs) {
+        try {
+            tab.view.webContents.setZoomLevel(zoomLevel)
+        } catch {}
+    }
+}
+
 function getBrowserViewBounds(): Electron.Rectangle {
     if (!win) return { x: 0, y: 0, width: 800, height: 600 }
     const { width, height } = win.getContentBounds()
@@ -192,6 +213,11 @@ function createTab(url: string = 'poseidon://newtab', options?: { realmId?: stri
         // Default: assign to active realm as loose tab
         assignTabToActiveRealm(id)
     }
+
+    // Apply current UI scale to new tab
+    const currentScale = settingsStore.get('uiScale')
+    const zoomLevel = UI_SCALE_ZOOM[currentScale] ?? -2
+    view.webContents.setZoomLevel(zoomLevel)
 
     // Notify renderer of tab organization
     const org = getTabOrganization(id)
@@ -770,6 +796,8 @@ function setupIPC(): void {
             toggleAdBlocker(value)
         } else if (key === 'httpsUpgradeEnabled') {
             toggleHttpsUpgrade(value)
+        } else if (key === 'uiScale') {
+            applyUiScale(value as string)
         }
 
         // Notify renderer of settings change
@@ -1118,14 +1146,15 @@ function createWindow(): void {
             contextIsolation: true,
             webviewTag: true, // Enable <webview> tag for proper z-index layering
         },
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0A0A0B',
         titleBarStyle: 'hiddenInset',
         trafficLightPosition: { x: 16, y: 14 },
         show: false, // Show when ready
     })
 
-    // Show when ready to prevent flash
+    // Show when ready to prevent flash, and apply saved UI scale
     win.once('ready-to-show', () => {
+        applyUiScale(settingsStore.get('uiScale'))
         win?.show()
     })
 

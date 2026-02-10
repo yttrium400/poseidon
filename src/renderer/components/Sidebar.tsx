@@ -29,7 +29,6 @@ import {
     ShieldCheck,
     X,
     Loader2,
-    Layers,
     FolderPlus,
     Trash2,
     Edit3,
@@ -1007,12 +1006,6 @@ export function Sidebar({ className, isPinned, onPinnedChange, tabs, activeTabId
                     {/* Header */}
                     <header className="flex items-center justify-between h-14 px-4 border-b border-white/[0.06]">
                         <div className="flex items-center gap-2.5">
-                            <div className="relative group">
-                                <div className="absolute inset-0 bg-gradient-to-br from-brand to-accent-violet rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity pointer-events-none" />
-                                <div className="relative flex items-center justify-center h-8 w-8 rounded-xl bg-gradient-to-br from-brand to-accent-violet shadow-glow">
-                                    <Layers className="h-4 w-4 text-white" />
-                                </div>
-                            </div>
                             <div className="flex flex-col">
                                 <span className="font-semibold text-sm text-text-primary tracking-tight">
                                     {currentRealm?.name || 'Poseidon'}

@@ -283,6 +283,7 @@ interface AppSettings {
     compactMode: boolean
     homeBackground: 'earth-horizon' | 'gradient-mesh' | 'aurora' | 'minimal' | 'custom'
     homeBackgroundCustomUrl: string
+    uiScale: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'
     historyEnabled: boolean
     historyRetentionDays: number
     clearHistoryOnExit: boolean
