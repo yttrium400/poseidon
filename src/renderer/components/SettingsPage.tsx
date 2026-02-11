@@ -639,7 +639,6 @@ export function SettingsPage({ className }: SettingsPageProps) {
                                 <div className="space-y-1 text-xs text-text-tertiary">
                                     <p>Version: 0.1.0 (Beta)</p>
                                     <p>Built with Electron + React + TypeScript</p>
-                                    <p>Powered by Claude AI</p>
                                 </div>
                             </div>
                         </section>

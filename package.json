@@ -18,7 +18,7 @@
     "browser",
     "ai"
   ],
-  "author": "Antigravity",
+  "author": "Anthracite",
   "license": "MIT",
   "devDependencies": {
     "@electron/rebuild": "^3.6.0",

@@ -73,4 +73,4 @@ We welcome contributions from the community!
 
 ## License
 
-MIT © [Antigravity](https://github.com/Antigravity)
+MIT © Anthracite
