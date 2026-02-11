@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    html {
+        font-feature-settings: "rlig" 1, "calt" 1, "cv02" 1, "cv03" 1, "cv04" 1;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color-scheme: dark;
+    }
+
+    body {
+        @apply bg-surface text-text-primary font-sans antialiased;
+        font-feature-settings: "rlig" 1, "calt" 1;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    ::selection {
+        background: rgba(99, 102, 241, 0.3);
+        color: #FAFAFA;
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply bg-white/[0.04] backdrop-blur-2xl rounded-2xl border border-white/[0.08];
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        @apply bg-brand text-white font-semibold rounded-xl px-4 py-2.5
+               transition-all duration-200 ease-smooth
+               hover:bg-brand-dark hover:shadow-glow
+               active:scale-[0.98] active:shadow-none;
+    }
+
+    .btn-icon {
+        @apply flex items-center justify-center w-9 h-9 rounded-xl
+               text-text-secondary transition-all duration-200 ease-smooth
+               hover:bg-white/[0.06] hover:text-text-primary
+               active:scale-[0.95];
+    }
+
+    .input-field {
+        @apply w-full bg-white/[0.05] border border-white/[0.08] rounded-xl px-4 py-3
+               text-text-primary placeholder:text-text-tertiary
+               transition-all duration-200 ease-smooth
+               focus:outline-none focus:border-brand/40 focus:ring-1 focus:ring-brand/30 focus:bg-white/[0.08]
+               hover:border-white/[0.12];
+    }
+}
+
+/* Earth Horizon Background */
+.earth-horizon {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    background:
+        radial-gradient(ellipse 120% 20% at 50% 100%,
+            rgba(135, 206, 250, 0.30) 0%,
+            rgba(100, 149, 237, 0.15) 30%,
+            transparent 60%
+        ),
+        radial-gradient(ellipse 150% 45% at 50% 100%,
+            rgba(70, 130, 220, 0.18) 0%,
+            rgba(50, 100, 180, 0.09) 35%,
+            transparent 55%
+        ),
+        radial-gradient(ellipse 200% 100% at 50% 100%,
+            rgba(12, 20, 40, 0.8) 0%,
+            rgba(10, 15, 30, 0.5) 40%,
+            rgba(10, 10, 11, 0.2) 65%,
+            transparent 100%
+        );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.earth-horizon-glow {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    background: radial-gradient(ellipse 140% 35% at 50% 100%,
+        rgba(135, 206, 250, 0.18) 0%,
+        rgba(99, 149, 237, 0.09) 30%,
+        transparent 50%
+    );
+    animation: atmosphereBreathe 12s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes atmosphereBreathe {
+    0%, 100% {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+/* Gradient Mesh */
+.gradient-mesh-bg {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Noise texture overlay */
+.bg-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .earth-horizon-glow {
+        animation: none;
+        opacity: 0.85;
+    }
+}
