@@ -21,6 +21,10 @@
   ],
   "author": "Anthracite",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yttrium400/anthracite-browser.git"
+  },
   "devDependencies": {
     "@electron/rebuild": "^3.6.0",
     "@types/better-sqlite3": "^7.6.13",
