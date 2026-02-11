@@ -255,7 +255,7 @@
         {
             "id": "23",
             "title": "CI/CD Pipeline — Automated Builds & Releases",
-            "status": "pending",
+            "status": "completed",
             "priority": "high",
             "context": "No GitHub Actions workflows exist for desktop builds. Website deploys via Vercel (already configured). Need automated multi-platform builds triggered on git tags.",
             "created_at": "2026-02-12T12:02:00.000000",
@@ -263,30 +263,30 @@
                 {
                     "id": "23.1",
                     "title": "Create .github/workflows/build.yml",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "Matrix build: macos-latest (DMG), windows-latest (NSIS), ubuntu-latest (AppImage). Trigger on push to tags matching v*. Steps: checkout, setup Node, npm install, electron-rebuild, npm run build, upload artifacts."
                 },
                 {
                     "id": "23.2",
                     "title": "Store code signing secrets in GitHub Secrets",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "Mac: APPLE_ID, APPLE_TEAM_ID, CSC_LINK (base64 .p12), CSC_KEY_PASSWORD. Windows: WIN_CSC_LINK, WIN_CSC_KEY_PASSWORD."
                 },
                 {
                     "id": "23.3",
                     "title": "Auto-publish to GitHub Releases on tag push",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "Use electron-builder --publish always. Creates GitHub Release with platform artifacts attached."
                 },
                 {
                     "id": "23.4",
                     "title": "Add type-check and lint step before build",
-                    "status": "pending"
+                    "status": "completed"
                 },
                 {
                     "id": "23.5",
                     "title": "Cache node_modules and Electron binaries",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "Use actions/cache for node_modules and ~/.cache/electron. Saves 2-3 min per build."
                 }
             ]
