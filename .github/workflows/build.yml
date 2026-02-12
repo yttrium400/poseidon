@@ -65,6 +65,7 @@ jobs:
           python backend/build.py
       
       - name: Debug - List directory structure
+        if: runner.os != 'Windows'
         run: |
           echo "=== Current directory ==="
           pwd
