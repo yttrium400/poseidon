@@ -91,6 +91,16 @@ jobs:
           DEBUG: electron-builder
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
+      - name: Debug - List output directories
+        shell: bash
+        run: |
+          echo "=== Root Listing ==="
+          ls -la
+          echo "=== Release Directory ==="
+          ls -la release/ || echo "release/ not found"
+          echo "=== Dist Directory ==="
+          ls -la dist/ || echo "dist/ not found"
+      
       - name: Upload artifacts (macOS)
         if: runner.os == 'macOS'
         uses: actions/upload-artifact@v4
