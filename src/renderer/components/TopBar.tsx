@@ -280,6 +280,10 @@ export function TopBar({
             // 1. Create a new agent tab inside Anthracite and get CDP info
             const agentTab = await (window as any).electron.agent.createAgentTab();
 
+            // Get API key from settings
+            const settings = await window.electron?.settings.getAll();
+            const apiKey = settings?.openaiApiKey;
+
             // 2. Stream agent task via SSE
             const response = await fetch('http://127.0.0.1:8000/agent/stream', {
                 method: 'POST',
@@ -288,6 +292,7 @@ export function TopBar({
                     instruction: inputValue.trim(),
                     cdp_url: agentTab.cdpUrl || 'http://127.0.0.1:9222',
                     target_id: agentTab.targetId || null,
+                    api_key: apiKey,
                 }),
                 signal: controller.signal,
             });

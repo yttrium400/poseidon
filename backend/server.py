@@ -81,6 +81,7 @@ class TaskRequest(BaseModel):
     instruction: str
     cdp_url: str = "http://127.0.0.1:9222"
     target_id: str | None = None
+    api_key: str | None = None  # Allow passing key from frontend
 
 class TestApiKeyRequest(BaseModel):
     api_key: str
@@ -91,13 +92,22 @@ def read_root():
 
 @app.post("/agent/run")
 async def run_agent(task: TaskRequest):
-    if not os.environ.get("OPENAI_API_KEY"):
-        return {"status": "error", "message": "OPENAI_API_KEY not found in environment"}
+    # Determine API key source
+    api_key = task.api_key or os.environ.get("OPENAI_API_KEY")
+    
+    if not api_key:
+        logger.error("No API key provided in request or environment")
+        return {"status": "error", "message": "OpenAI API key not found. Please add it in Settings."}
+    
+    # Temporarily set env var for the agent process if passed via request
+    if task.api_key:
+        os.environ["OPENAI_API_KEY"] = task.api_key
 
     try:
         result = await run_agent_task_logic(task.instruction, task.cdp_url, task.target_id)
         return {"status": "success", "result": result}
     except Exception as e:
+        logger.error(f"Agent task failed: {e}", exc_info=True)
         return {"status": "error", "message": str(e)}
 
 
@@ -161,10 +171,19 @@ async def stream_agent(task: TaskRequest):
     Fast path: direct CDP commands for simple actions (navigate, search).
     Complex path: full browser-use pipeline with step-by-step progress.
     """
-    if not os.environ.get("OPENAI_API_KEY"):
+    
+    # Determine API key source
+    api_key = task.api_key or os.environ.get("OPENAI_API_KEY")
+    
+    if not api_key:
+        logger.error("Stream request rejected: No API key found")
         async def error_stream():
-            yield _sse_event({"type": "error", "message": "OPENAI_API_KEY not found"})
+            yield _sse_event({"type": "error", "message": "OpenAI API key not found. Please add it in Settings."})
         return StreamingResponse(error_stream(), media_type="text/event-stream")
+    
+    # Set for this process scope
+    if task.api_key:
+        os.environ["OPENAI_API_KEY"] = task.api_key
 
     async def event_stream():
         try:
@@ -172,6 +191,7 @@ async def stream_agent(task: TaskRequest):
             yield _sse_event({"type": "classifying", "instruction": task.instruction})
 
             intent = await classify(task.instruction)
+            
             yield _sse_event({
                 "type": "classified",
                 "action": intent.action,
@@ -233,6 +253,7 @@ async def stream_agent(task: TaskRequest):
                     except InterruptedError:
                         await queue.put({"type": "stopped", "result": "Agent stopped by user"})
                     except Exception as e:
+                        logger.error(f"Agent stream error in background task: {e}", exc_info=True)
                         await queue.put({"type": "error", "message": str(e)})
                     finally:
                         agent_control.finish()
@@ -260,7 +281,7 @@ async def stream_agent(task: TaskRequest):
                         pass
 
         except Exception as e:
-            logger.error(f"Stream error: {e}")
+            logger.error(f"Stream error: {e}", exc_info=True)
             yield _sse_event({"type": "error", "message": str(e)})
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
