@@ -2,70 +2,66 @@
 
 First off, thanks for taking the time to contribute! 🎉
 
-The following is a set of guidelines for contributing to Anthracite. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+The following is a set of **strict guidelines** for contributing to Anthracite. These rules are in place to keep the codebase clean, maintainable, and stable.
 
-## Code of Conduct
+## 🛑 Prerequisites
 
-This project and everyone participating in it is governed by the [Anthracite Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to the project maintainers.
+Before checking out the code, please Ensure:
+1.  **Node.js v20+** is installed.
+2.  **Python 3.12+** is installed.
+3.  You have an **OpenAI API Key** (for agent features).
 
-## How Can I Contribute?
+## 🌳 Branching Strategy
 
-### Reporting Bugs
+We follow a strict branching model:
 
-This section guides you through submitting a bug report for Anthracite. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.
+-   **`main`**: Production-ready code. DO NOT push directly to main.
+-   **Feature Branches**: `feat/description-of-feature`
+-   **Bug Fixes**: `fix/description-of-bug`
+-   **Chore/Docs**: `chore/description` or `docs/description`
 
-- **Use a clear and descriptive title** for the issue to identify the problem.
-- **Describe the exact steps which reproduce the problem** in as many details as possible.
-- **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples.
-- **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
-- **Explain which behavior you expected to see instead and why.**
-- **Include screenshots and animated GIFs** which show you following the described steps and clearly demonstrate the problem.
+**Example:**
+```bash
+git checkout -b feat/command-palette
+git checkout -b fix/sidebar-crash
+```
 
-### Suggesting Enhancements
+## 📝 Commit Messages
 
-This section guides you through submitting an enhancement suggestion for Anthracite, including completely new features and minor improvements to existing functionality.
+We enforce **Conventional Commits**. This is automated and required for our release pipeline.
 
-- **Use a clear and descriptive title** for the issue to identify the suggestion.
-- **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
-- **Provide specific examples to demonstrate the steps**.
-- **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
+**Format:** `<type>(<scope>): <description>`
 
-### Pull Requests
+**Types:**
+-   `feat`: A new feature
+-   `fix`: A bug fix
+-   `docs`: Documentation only changes
+-   `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+-   `refactor`: A code change that neither fixes a bug nor adds a feature
+-   `perf`: A code change that improves performance
+-   `test`: Adding missing tests or correcting existing tests
+-   `chore`: Changes to the build process or auxiliary tools
 
-The process described here has several goals:
+**Examples:**
+-   `feat(sidebar): add collapsible toggle button`
+-   `fix(agent): handle network timeout gracefully`
+-   `docs(readme): update installation instructions`
 
-- Maintain Anthracite's quality
-- Fix problems that are important to users
-- Engage the community in working toward the best possible Anthracite
-- Enable a sustainable system for Anthracite's maintainers to review contributions
+**❌ Bad Examples:**
+-   `fixed bug`
+-   `wip`
+-   `added cool feature`
 
-Please follow these steps to have your contribution considered by the maintainers:
+## 🚀 Pull Request Process
 
-1.  Follow all instructions in [the template](.github/PULL_REQUEST_TEMPLATE.md)
-2.  Follow the style guides
-3.  After you submit your pull request, verify that all status checks are passing
+1.  **Draft Early**: Open a Draft PR if you want early feedback.
+2.  **Fill the Template**: Do not delete the PR template. Fill every section.
+3.  **One PR per Feature**: Do not bundle multiple unrelated changes.
+4.  **Self-Review**: Review your own code before requesting a review.
+5.  **Tests**: If you add code, add tests. If you fix a bug, add a regression test.
+6.  **Linting**: Ensure `npm run lint` passes.
 
-## Styleguides
-
-### Git Commit Messages
-
-- Use the present tense ("Add feature" not "Added feature")
-- Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-- Limit the first line to 72 characters or less
-- Reference issues and pull requests liberally after the first line
-
-### JavaScript / TypeScript Styleguide
-
-- All JavaScript must adhere to [Prettier](https://prettier.io/) standards.
-- Prefer `const` over `let`. Avoid `var`.
-- Use TypeScript interfaces for props and state.
-
-### Python Styleguide
-
-- All Python code must adhere to [PEP 8](https://www.python.org/dev/peps/pep-0008/).
-- Use type hints for function arguments and return values.
-
-## Setting up the Development Environment
+## 💻 Development Setup
 
 1.  **Install Node.js dependencies**:
     ```bash
@@ -75,13 +71,13 @@ Please follow these steps to have your contribution considered by the maintainer
 2.  **Setup Python environment**:
     ```bash
     python3 -m venv venv
-    source venv/bin/activate
+    source venv/bin/activate  # Windows: venv\Scripts\activate
     pip install -r backend/requirements.txt
     playwright install
     ```
 
 3.  **Configure Environment Variables**:
-    Create a `.env` file in the root directory and add your keys:
+    Create a `.env` file in the root directory:
     ```
     OPENAI_API_KEY=your_key_here
     ```
@@ -91,4 +87,10 @@ Please follow these steps to have your contribution considered by the maintainer
     npm run dev
     ```
 
-Thank you for contributing!
+## 🎨 Style Guides
+
+-   **TypeScript**: We use ESLint and Prettier. Run `npm run lint` before committing.
+-   **Python**: Follow PEP 8.
+-   **Components**: Use Functional Components with Hooks. atomic design principles.
+
+Thank you for contributing to Anthracite!
