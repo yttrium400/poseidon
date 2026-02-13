@@ -1,7 +1,7 @@
 {
   "name": "anthracite-app",
   "productName": "Anthracite",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Desktop Agent Browser powered by browser-use",
   "main": "dist-electron/main.js",
   "scripts": {
@@ -37,7 +37,8 @@
     },
     "files": [
       "dist-electron/**/*",
-      "dist/**/*"
+      "dist/**/*",
+      "package.json"
     ],
     "extraResources": [
       {
@@ -50,8 +51,7 @@
       {
         "from": "backend/dist/anthracite-server.exe",
         "to": "backend/anthracite-server.exe"
-      },
-      "package.json"
+      }
     ],
     "mac": {
       "icon": "build/icon.png",
