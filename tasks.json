@@ -2,207 +2,6 @@
     "tasks": [
         {
             "id": "1",
-            "title": "Implement Vertical Sidebar UI (Arc-style)",
-            "status": "completed",
-            "priority": "high",
-            "context": "Create a collapsible sidebar in React. Move 'Command Bar' to be accessible via shortcut (Cmd+K) or persistent button. Use simple, elegant icons.",
-            "created_at": "2024-05-22T10:00:00.000000"
-        },
-        {
-            "id": "2",
-            "title": "Implement Core Web Browsing",
-            "status": "completed",
-            "priority": "high",
-            "context": "Implemented webview-based architecture for full CSS z-index layering support. Sidebar floats over web content with blur effect.",
-            "created_at": "2024-05-22T10:00:30.000000"
-        },
-        {
-            "id": "3",
-            "title": "Brave-level Native Ad Blocker",
-            "status": "completed",
-            "priority": "high",
-            "context": "Use @ghostery/adblocker-electron. Fixed Electron 20+ compatibility issues. Enabled on both main process and renderer sessions.",
-            "created_at": "2024-05-22T10:01:00.000000"
-        },
-        {
-            "id": "4",
-            "title": "AI Agent Integration (browser-use)",
-            "status": "completed",
-            "priority": "high",
-            "context": "Python FastAPI backend using browser-use library for webpage automation. Agent can click, type, scroll, navigate.",
-            "created_at": "2024-05-22T10:02:00.000000"
-        },
-        {
-            "id": "5",
-            "title": "Beautiful Home Page (anthracite:// internal page)",
-            "status": "completed",
-            "priority": "medium",
-            "context": "Custom internal page with Command Bar, quick links, and recent sites. Handles anthracite://newtab URLs.",
-            "created_at": "2024-05-22T10:03:00.000000"
-        },
-        {
-            "id": "6",
-            "title": "Smart Settings (anthracite://settings)",
-            "status": "completed",
-            "priority": "low",
-            "context": "Full settings page with 5 sections. Persistent storage via JSON file.",
-            "created_at": "2024-05-22T10:04:00.000000"
-        },
-        {
-            "id": "7",
-            "title": "URL Autocomplete with History & Suggestions",
-            "status": "completed",
-            "priority": "high",
-            "context": "JSON-based history storage with browser history and Google search suggestions. IPC handlers for search.",
-            "created_at": "2024-05-22T10:05:00.000000"
-        },
-        {
-            "id": "8",
-            "title": "Upgrade History to SQLite Database",
-            "status": "completed",
-            "priority": "low",
-            "context": "Migrated from JSON to better-sqlite3. WAL mode, prepared statements, 4 indexes. Auto-migration from old JSON file.",
-            "created_at": "2024-05-22T10:06:00.000000"
-        },
-        {
-            "id": "9",
-            "title": "Fix URL Bar Not Updating on Navigation",
-            "status": "completed",
-            "priority": "high",
-            "created_at": "2024-05-22T10:07:00.000000"
-        },
-        {
-            "id": "10",
-            "title": "Fix Suggestion Dropdown Persisting After Navigation",
-            "status": "completed",
-            "priority": "medium",
-            "created_at": "2024-05-22T12:00:00.000000"
-        },
-        {
-            "id": "11",
-            "title": "Implement Aggressive Ad & Popup Blocking for Streaming Sites",
-            "status": "completed",
-            "priority": "high",
-            "created_at": "2024-05-22T14:00:00.000000"
-        },
-        {
-            "id": "12",
-            "title": "Fix YouTube Reload Loop & Stabilize Ad Blocker",
-            "status": "completed",
-            "priority": "high",
-            "created_at": "2024-05-22T15:00:00.000000"
-        },
-        {
-            "id": "13",
-            "title": "Implement Arc-style Sidebar with Realms & Docks",
-            "status": "completed",
-            "priority": "high",
-            "context": "All core features complete: Realms, Docks, tab organization, drag-and-drop, context menus, pinning, realm search (Cmd+Shift+K), TopBar indicator, templates.",
-            "created_at": "2025-02-05T12:00:00.000000"
-        },
-        {
-            "id": "14",
-            "title": "Fix Sidebar Pinning Behavior",
-            "status": "completed",
-            "priority": "high",
-            "created_at": "2024-06-15T10:00:00.000000"
-        },
-        {
-            "id": "15",
-            "title": "Instant Tab Name Updates",
-            "status": "completed",
-            "priority": "medium",
-            "created_at": "2024-06-15T10:05:00.000000"
-        },
-        {
-            "id": "16",
-            "title": "Fix Reload Behavior",
-            "status": "completed",
-            "priority": "medium",
-            "created_at": "2024-06-15T10:10:00.000000"
-        },
-        {
-            "id": "17",
-            "title": "Fix Navigation Controls (Back/Forward/Swipe)",
-            "status": "completed",
-            "priority": "high",
-            "created_at": "2024-06-15T10:15:00.000000"
-        },
-        {
-            "id": "18",
-            "title": "Phase 1: Agent Runs Inside Anthracite (CDP Integration)",
-            "status": "completed",
-            "priority": "high",
-            "context": "Agent runs inside Anthracite tabs via CDP. BrowserViews attached off-screen for rendering surface. Screenshots optimized with JPEG+optimizeForSpeed.",
-            "created_at": "2026-02-09T10:00:00.000000"
-        },
-        {
-            "id": "19",
-            "title": "Phase 2: Fast Path for Simple Agent Actions",
-            "status": "completed",
-            "priority": "medium",
-            "context": "Bypass browser-use for simple commands via direct CDP. Classifier (regex + LLM), SSE streaming, stop/pause/resume controls.",
-            "created_at": "2026-02-09T10:01:00.000000"
-        },
-        {
-            "id": "20",
-            "title": "Coming Soon Website (anthracitebrowser.com)",
-            "status": "completed",
-            "priority": "high",
-            "context": "Standalone Vite+React+TS+Tailwind site in website/ folder. Minimal dark aesthetic matching browser theme. Landing page with 'Get early access' button → signup form page. Deployed to Vercel.",
-            "created_at": "2026-02-12T10:00:00.000000"
-        },
-        {
-            "id": "21",
-            "title": "Security Hardening — Pre-Release Critical",
-            "status": "pending",
-            "priority": "critical",
-            "context": "MUST be done before any public release or open-sourcing. The .env file currently contains an exposed OpenAI API key committed to git history. The Python backend has no auth or rate limiting.",
-            "created_at": "2026-02-12T12:00:00.000000",
-            "subtasks": [
-                {
-                    "id": "21.1",
-                    "title": "Remove .env from git history (contains exposed OpenAI API key)",
-                    "status": "completed",
-                    "context": "Use BFG Repo-Cleaner or git filter-repo. Then rotate the compromised key on OpenAI dashboard immediately."
-                },
-                {
-                    "id": "21.2",
-                    "title": "Ensure .env is in .gitignore",
-                    "status": "completed"
-                },
-                {
-                    "id": "21.3",
-                    "title": "Rotate the exposed OpenAI API key",
-                    "status": "completed"
-                },
-                {
-                    "id": "21.4",
-                    "title": "Validate API key in Python backend — reject empty/invalid keys gracefully",
-                    "status": "completed",
-                    "context": "backend/server.py and backend/agent.py currently just read from .env with no validation."
-                },
-                {
-                    "id": "21.5",
-                    "title": "Verify Python FastAPI server is bound to 127.0.0.1 only (not 0.0.0.0)",
-                    "status": "completed",
-                    "context": "Check backend/server.py uvicorn host binding. Must not be accessible from network."
-                },
-                {
-                    "id": "21.6",
-                    "title": "Audit preload.ts contextBridge — minimize exposed APIs to renderer",
-                    "status": "completed",
-                    "context": "src/main/preload.ts exposes 40+ IPC channels. Review for unnecessary surface area."
-                },
-                {
-                    "id": "21.7",
-                    "title": "Add Content-Security-Policy headers for the Electron renderer",
-                    "status": "completed"
-                }
-            ]
-        },
-        {
-            "id": "22",
             "title": "Production Desktop Builds (Mac + Windows + Linux)",
             "status": "pending",
             "priority": "critical",
@@ -210,81 +9,81 @@
             "created_at": "2026-02-12T12:01:00.000000",
             "subtasks": [
                 {
-                    "id": "22.1",
+                    "id": "1.1",
                     "title": "Create electron-builder.json with platform targets",
                     "status": "completed",
                     "context": "Mac: DMG + universal binary (Intel + Apple Silicon). Windows: NSIS installer. Linux: AppImage (optional, lower priority). Configure app metadata, file associations, protocol handler (anthracite://)."
                 },
                 {
-                    "id": "22.2",
+                    "id": "1.2",
                     "title": "macOS code signing + notarization",
                     "status": "pending",
                     "context": "Requires Apple Developer account ($99/yr). Sign with Developer ID Application certificate. Notarize via notarytool. Without this, macOS will block the app with Gatekeeper."
                 },
                 {
-                    "id": "22.3",
+                    "id": "1.3",
                     "title": "Windows Distribution: Publish to Microsoft Store",
                     "status": "pending",
                     "context": "Microsoft Store handles signing for free/cheap (~$19 once), avoiding the expensive EV cert ($400/yr). Requires packaging as MSIX. Users install via Store link or appinstaller."
                 },
                 {
-                    "id": "22.4",
+                    "id": "1.4",
                     "title": "Configure electron-updater for auto-updates",
                     "status": "completed",
                     "context": "Use GitHub Releases as update server (free). electron-updater checks for new versions on app launch. Show update available notification in-app."
                 },
                 {
-                    "id": "22.5",
+                    "id": "1.5",
                     "title": "Handle native module bundling (better-sqlite3)",
                     "status": "completed",
                     "context": "better-sqlite3 requires platform-specific .node binary. electron-rebuild is already configured (postinstall script). Verify it works in packaged builds on all platforms."
                 },
                 {
-                    "id": "22.6",
+                    "id": "1.6",
                     "title": "Bundle Python backend with the Electron app",
                     "status": "completed",
                     "context": "Currently the Python backend (backend/) runs separately. For production: either bundle a Python runtime (PyInstaller/cx_Freeze the FastAPI server into a single binary) or require users to have Python installed. Bundling is strongly preferred for non-technical users. Alternative: rewrite backend in Node.js to eliminate Python dependency entirely."
                 },
                 {
-                    "id": "22.7",
-                    "title": "Test full install → launch → use → auto-update flow on Mac and Windows",
+                    "id": "1.7",
+                    "title": "Test full install \u2192 launch \u2192 use \u2192 auto-update flow on Mac and Windows",
                     "status": "completed"
                 }
             ]
         },
         {
-            "id": "23",
-            "title": "CI/CD Pipeline — Automated Builds & Releases",
+            "id": "2",
+            "title": "CI/CD Pipeline \u2014 Automated Builds & Releases",
             "status": "pending",
             "priority": "high",
             "context": "No GitHub Actions workflows exist for desktop builds. Website deploys via Vercel (already configured). Need automated multi-platform builds triggered on git tags.",
             "created_at": "2026-02-12T12:02:00.000000",
             "subtasks": [
                 {
-                    "id": "23.1",
+                    "id": "2.1",
                     "title": "Create .github/workflows/build.yml",
                     "status": "completed",
                     "context": "Matrix build: macos-latest (DMG), windows-latest (NSIS), ubuntu-latest (AppImage). Trigger on push to tags matching v*. Steps: checkout, setup Node, npm install, electron-rebuild, npm run build, upload artifacts."
                 },
                 {
-                    "id": "23.2",
+                    "id": "2.2",
                     "title": "Store code signing secrets in GitHub Secrets",
                     "status": "pending",
                     "context": "Mac: APPLE_ID, APPLE_TEAM_ID, CSC_LINK (base64 .p12), CSC_KEY_PASSWORD. Windows: WIN_CSC_LINK, WIN_CSC_KEY_PASSWORD."
                 },
                 {
-                    "id": "23.3",
+                    "id": "2.3",
                     "title": "Auto-publish to GitHub Releases on tag push",
                     "status": "completed",
                     "context": "Use electron-builder --publish always. Creates GitHub Release with platform artifacts attached."
                 },
                 {
-                    "id": "23.4",
+                    "id": "2.4",
                     "title": "Add type-check and lint step before build",
                     "status": "completed"
                 },
                 {
-                    "id": "23.5",
+                    "id": "2.5",
                     "title": "Cache node_modules and Electron binaries",
                     "status": "completed",
                     "context": "Use actions/cache for node_modules and ~/.cache/electron. Saves 2-3 min per build."
@@ -292,39 +91,39 @@
             ]
         },
         {
-            "id": "24",
-            "title": "Website Waitlist Backend — Actually Save Signups",
+            "id": "3",
+            "title": "Website Waitlist Backend \u2014 Actually Save Signups",
             "status": "pending",
             "priority": "high",
-            "context": "The signup form on anthracitebrowser.com (website/src/components/Signup.tsx) is purely cosmetic. It shows 'You're on the list' but saves nothing — no API call, no database, no email service. Need a real backend to collect and manage waitlist signups.",
+            "context": "The signup form on anthracitebrowser.com (website/src/components/Signup.tsx) is purely cosmetic. It shows 'You're on the list' but saves nothing \u2014 no API call, no database, no email service. Need a real backend to collect and manage waitlist signups.",
             "created_at": "2026-02-12T12:03:00.000000",
             "subtasks": [
                 {
-                    "id": "24.1",
+                    "id": "3.1",
                     "title": "Choose and set up waitlist backend",
-                    "status": "pending",
-                    "context": "Options ranked by simplicity: (1) Vercel serverless function + Supabase table — free tier covers early stage, (2) Resend audience API — email-native, good for later sending launch emails, (3) Google Sheets API — quick and dirty. Recommended: Supabase for the table + Resend for confirmation emails."
+                    "status": "completed",
+                    "context": "Options ranked by simplicity: (1) Vercel serverless function + Supabase table \u2014 free tier covers early stage, (2) Resend audience API \u2014 email-native, good for later sending launch emails, (3) Google Sheets API \u2014 quick and dirty. Recommended: Supabase for the table + Resend for confirmation emails."
                 },
                 {
-                    "id": "24.2",
+                    "id": "3.2",
                     "title": "Create API endpoint for signup submission",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "POST /api/signup accepting { name, email, role }. Validate email format. Check for duplicates. Return success/error."
                 },
                 {
-                    "id": "24.3",
+                    "id": "3.3",
                     "title": "Connect Signup.tsx to the real API",
-                    "status": "pending",
+                    "status": "completed",
                     "context": "Replace the cosmetic setSubmitted(true) in handleSubmit with an actual fetch() to the API. Handle loading state, errors, duplicate emails gracefully."
                 },
                 {
-                    "id": "24.4",
+                    "id": "3.4",
                     "title": "Send confirmation email on signup (optional)",
                     "status": "pending",
                     "context": "Use Resend or similar. Simple email: 'Thanks for signing up for Anthracite. We'll notify you when it's ready.'"
                 },
                 {
-                    "id": "24.5",
+                    "id": "3.5",
                     "title": "Create admin view or export for signups",
                     "status": "pending",
                     "context": "At minimum: ability to export CSV of all signups. Supabase dashboard gives this for free."
@@ -332,7 +131,7 @@
             ]
         },
         {
-            "id": "25",
+            "id": "4",
             "title": "Fork & Customize browser-use for Anthracite",
             "status": "pending",
             "priority": "critical",
@@ -340,89 +139,89 @@
             "created_at": "2026-02-12T12:04:00.000000",
             "subtasks": [
                 {
-                    "id": "25.1",
+                    "id": "4.1",
                     "title": "Fork browser-use repo",
                     "status": "pending",
                     "context": "Fork to your own repo (e.g. anthracite-agent). Update backend/requirements.txt to install from the fork. Keep ability to pull upstream improvements."
                 },
                 {
-                    "id": "25.2",
+                    "id": "4.2",
                     "title": "Study browser-use internals deeply",
                     "status": "pending",
                     "context": "Understand: how it takes screenshots, parses DOM, builds the accessibility tree, decides actions, handles errors, manages state between steps. Read the Agent class, BrowserSession, and all action handlers."
                 },
                 {
-                    "id": "25.3",
+                    "id": "4.3",
                     "title": "Identify and fix reliability bottlenecks",
                     "status": "pending",
                     "context": "Common failures: clicking wrong element, getting stuck in loops, failing on dynamic content (SPAs), struggling with dropdowns/date pickers, losing context in multi-step tasks. Log and categorize agent failures to prioritize fixes."
                 },
                 {
-                    "id": "25.4",
+                    "id": "4.4",
                     "title": "Improve DOM element targeting",
                     "status": "pending",
                     "context": "Combine: accessibility tree (primary) + CSS selectors + visual coordinates from screenshots. Current browser-use relies heavily on one method. Fallback chain makes targeting much more robust."
                 },
                 {
-                    "id": "25.5",
+                    "id": "4.5",
                     "title": "Add task memory to prevent loops",
                     "status": "pending",
                     "context": "Agent should track what it's already tried in the current task. If it's clicking the same element 3 times with no state change, try a different approach. Implement a simple action history with 'already tried' detection."
                 },
                 {
-                    "id": "25.6",
+                    "id": "4.6",
                     "title": "Optimize token usage / cost per task",
                     "status": "pending",
                     "context": "Current agent sends full screenshots + full DOM on every step. Optimize: use accessibility tree as primary input (much smaller), only send screenshots when visual context is needed (use_vision='auto' is a start but can be smarter). Reduce cost per task to make paid tier margins viable."
                 },
                 {
-                    "id": "25.7",
+                    "id": "4.7",
                     "title": "Build two-tier agent: quick mode vs deep mode",
                     "status": "pending",
-                    "context": "Quick mode: minimal DOM snapshot, no screenshot, fast LLM call — for simple actions. Deep mode: full browser-use pipeline with vision — for complex multi-step tasks. Classifier (backend/classifier.py) already routes simple vs complex; extend this to control agent depth."
+                    "context": "Quick mode: minimal DOM snapshot, no screenshot, fast LLM call \u2014 for simple actions. Deep mode: full browser-use pipeline with vision \u2014 for complex multi-step tasks. Classifier (backend/classifier.py) already routes simple vs complex; extend this to control agent depth."
                 }
             ]
         },
         {
-            "id": "26",
-            "title": "Google/OAuth Account Linking — Agent Auth",
+            "id": "5",
+            "title": "Google/OAuth Account Linking \u2014 Agent Auth",
             "status": "pending",
             "priority": "critical",
-            "context": "Users need to link accounts (Google, Microsoft, etc.) so the AI agent can act as them — log into Gmail, book flights on their airline account, manage their calendar. Currently the agent has NO auth context and cannot access any logged-in services. This is NOT traditional OAuth (we don't need API tokens) — the agent needs actual browser session cookies so it can navigate sites as the user.",
+            "context": "Users need to link accounts (Google, Microsoft, etc.) so the AI agent can act as them \u2014 log into Gmail, book flights on their airline account, manage their calendar. Currently the agent has NO auth context and cannot access any logged-in services. This is NOT traditional OAuth (we don't need API tokens) \u2014 the agent needs actual browser session cookies so it can navigate sites as the user.",
             "created_at": "2026-02-12T12:05:00.000000",
             "subtasks": [
                 {
-                    "id": "26.1",
+                    "id": "5.1",
                     "title": "Design the auth persistence architecture",
                     "status": "pending",
                     "context": "When user logs into Google in a normal Anthracite tab, capture and persist the session cookies for google.com. Store them so they survive app restarts. Electron's session.defaultSession.cookies API can get/set cookies. The agent's CDP-connected BrowserView needs to share these cookies."
                 },
                 {
-                    "id": "26.2",
+                    "id": "5.2",
                     "title": "Implement persistent cookie/session storage",
                     "status": "pending",
                     "context": "Electron sessions are ephemeral by default (persist: prefix helps but needs explicit setup). Use session.defaultSession.cookies.get/set to save critical auth cookies. Encrypt stored cookies at rest using Electron's safeStorage API."
                 },
                 {
-                    "id": "26.3",
+                    "id": "5.3",
                     "title": "Share session state between user browsing and agent BrowserView",
                     "status": "pending",
                     "context": "Currently the agent uses a separate BrowserView (off-screen, connected via CDP). It needs the same session cookies as the user's normal browsing session. Either use the same Electron session partition, or copy cookies before agent task starts."
                 },
                 {
-                    "id": "26.4",
+                    "id": "5.4",
                     "title": "Add 'Connected Accounts' section in Settings",
                     "status": "pending",
-                    "context": "Show which services the agent has access to (based on stored sessions). E.g., 'Google — signed in as user@gmail.com', 'GitHub — signed in'. Allow user to disconnect (clear cookies for that domain)."
+                    "context": "Show which services the agent has access to (based on stored sessions). E.g., 'Google \u2014 signed in as user@gmail.com', 'GitHub \u2014 signed in'. Allow user to disconnect (clear cookies for that domain)."
                 },
                 {
-                    "id": "26.5",
+                    "id": "5.5",
                     "title": "Handle session expiry detection and re-auth prompts",
                     "status": "pending",
                     "context": "Sessions expire. When the agent tries to act on a site and gets redirected to login, detect this and prompt the user: 'Your Google session has expired. Please sign in again.' Pause agent, let user sign in, then resume."
                 },
                 {
-                    "id": "26.6",
+                    "id": "5.6",
                     "title": "Security: encrypt stored session data, never send externally",
                     "status": "pending",
                     "context": "Session cookies are extremely sensitive (they ARE the user's identity). Encrypt at rest using Electron safeStorage. Never transmit to any server. Never include in error reports. Clear on 'Sign Out' of Anthracite account."
@@ -430,33 +229,33 @@
             ]
         },
         {
-            "id": "27",
+            "id": "6",
             "title": "Multi-Model Support & API Key Management UI",
             "status": "pending",
             "priority": "high",
-            "context": "Currently hardcoded to OpenAI GPT-4o with API key in .env file. No way for users to configure this. Users need to: (1) bring their own API keys, (2) choose which model to use, (3) store keys securely. The CommandBar already shows 'GPT-4o' as static text (line 303) — this should be a working model selector.",
+            "context": "Currently hardcoded to OpenAI GPT-4o with API key in .env file. No way for users to configure this. Users need to: (1) bring their own API keys, (2) choose which model to use, (3) store keys securely. The CommandBar already shows 'GPT-4o' as static text (line 303) \u2014 this should be a working model selector.",
             "created_at": "2026-02-12T12:06:00.000000",
             "subtasks": [
                 {
-                    "id": "27.1",
+                    "id": "6.1",
                     "title": "Add API Key settings page",
                     "status": "pending",
                     "context": "New section in SettingsPage.tsx (src/renderer/components/SettingsPage.tsx). Input fields for: OpenAI key, Anthropic key, Google AI key. Validate on save (make a lightweight test call). Store securely using Electron's safeStorage API (NOT in a plain JSON file)."
                 },
                 {
-                    "id": "27.2",
+                    "id": "6.2",
                     "title": "Support multiple LLM providers in the backend",
                     "status": "pending",
-                    "context": "Update backend/agent.py to accept provider + model + key as parameters instead of reading .env. Support: OpenAI (GPT-4o, GPT-4o-mini, o1), Anthropic (Claude 3.5 Sonnet, Claude 4), Google (Gemini). Use langchain's provider abstractions — already using langchain-openai."
+                    "context": "Update backend/agent.py to accept provider + model + key as parameters instead of reading .env. Support: OpenAI (GPT-4o, GPT-4o-mini, o1), Anthropic (Claude 3.5 Sonnet, Claude 4), Google (Gemini). Use langchain's provider abstractions \u2014 already using langchain-openai."
                 },
                 {
-                    "id": "27.3",
+                    "id": "6.3",
                     "title": "Make CommandBar model selector functional",
                     "status": "pending",
                     "context": "The 'GPT-4o' + ChevronDown button in CommandBar.tsx (line 299-305) is currently static. Make it a working dropdown showing available models (based on which API keys the user has configured). Persist last-used model choice."
                 },
                 {
-                    "id": "27.4",
+                    "id": "6.4",
                     "title": "Support local models via Ollama",
                     "status": "pending",
                     "context": "For privacy-conscious users: detect if Ollama is running locally, list available models, route agent calls through Ollama. No API key needed. Lower quality but free and private."
@@ -464,7 +263,7 @@
             ]
         },
         {
-            "id": "28",
+            "id": "7",
             "title": "User Authentication System",
             "status": "pending",
             "priority": "high",
@@ -472,122 +271,122 @@
             "created_at": "2026-02-12T12:07:00.000000",
             "subtasks": [
                 {
-                    "id": "28.1",
+                    "id": "7.1",
                     "title": "Choose auth provider",
                     "status": "pending",
                     "context": "Options: Clerk (best DX, generous free tier, handles OAuth flows), Supabase Auth (if already using Supabase for waitlist), Firebase Auth, or custom. Clerk recommended for speed and Electron compatibility."
                 },
                 {
-                    "id": "28.2",
+                    "id": "7.2",
                     "title": "Implement sign-up / sign-in flow in Electron",
                     "status": "pending",
                     "context": "OAuth popup window (BrowserWindow) for Google/GitHub sign-in. Store auth tokens securely via Electron safeStorage. Show auth state in sidebar footer or settings."
                 },
                 {
-                    "id": "28.3",
+                    "id": "7.3",
                     "title": "Support: email/password, Google OAuth, GitHub OAuth, Apple Sign-In",
                     "status": "pending"
                 },
                 {
-                    "id": "28.4",
+                    "id": "7.4",
                     "title": "Add user profile section in Settings",
                     "status": "pending",
                     "context": "Show: avatar, name, email, plan tier, sign-out button. Link to subscription management."
                 },
                 {
-                    "id": "28.5",
+                    "id": "7.5",
                     "title": "Handle offline mode gracefully",
                     "status": "pending",
-                    "context": "App must work fully without auth — just without sync/cloud/subscription features. Never block the browser because of auth issues."
+                    "context": "App must work fully without auth \u2014 just without sync/cloud/subscription features. Never block the browser because of auth issues."
                 }
             ]
         },
         {
-            "id": "29",
-            "title": "Cloud Sync — Realms, Docks, History, Settings",
+            "id": "8",
+            "title": "Cloud Sync \u2014 Realms, Docks, History, Settings",
             "status": "pending",
             "priority": "medium",
             "context": "All user data is currently local only. Realms/Docks in anthracite-realms.json, history in SQLite (history.db), settings in settings.json. Authenticated users should be able to sync across devices. Depends on task 28 (user auth).",
             "created_at": "2026-02-12T12:08:00.000000",
             "subtasks": [
                 {
-                    "id": "29.1",
+                    "id": "8.1",
                     "title": "Design sync architecture",
                     "status": "pending",
                     "context": "Options: (1) CRDTs for conflict-free merging (complex but robust), (2) Last-write-wins per entity (simpler, occasional data loss), (3) Manual merge on conflict (user decides). Start with last-write-wins for settings, CRDTs for realms/docks. Backend: Supabase Postgres + realtime subscriptions."
                 },
                 {
-                    "id": "29.2",
-                    "title": "Implement settings sync (simplest — start here)",
+                    "id": "8.2",
+                    "title": "Implement settings sync (simplest \u2014 start here)",
                     "status": "pending",
                     "context": "Settings are a single JSON blob. On change: upload to cloud. On login from new device: merge with local (cloud wins for most fields). Files: src/main/settings.ts."
                 },
                 {
-                    "id": "29.3",
+                    "id": "8.3",
                     "title": "Implement realms & docks sync",
                     "status": "pending",
-                    "context": "More complex — realms contain docks which contain tabs. Need entity-level sync, not whole-file replacement. Files: src/main/store.ts."
+                    "context": "More complex \u2014 realms contain docks which contain tabs. Need entity-level sync, not whole-file replacement. Files: src/main/store.ts."
                 },
                 {
-                    "id": "29.4",
+                    "id": "8.4",
                     "title": "Implement history sync",
                     "status": "pending",
-                    "context": "SQLite history.db. Sync recent entries (last 30 days). Don't sync entire history — too large. Files: src/main/history.ts."
+                    "context": "SQLite history.db. Sync recent entries (last 30 days). Don't sync entire history \u2014 too large. Files: src/main/history.ts."
                 },
                 {
-                    "id": "29.5",
-                    "title": "Handle offline → online reconciliation",
+                    "id": "8.5",
+                    "title": "Handle offline \u2192 online reconciliation",
                     "status": "pending",
                     "context": "Queue changes made while offline. Sync when connection restored. Handle conflicts."
                 }
             ]
         },
         {
-            "id": "30",
+            "id": "9",
             "title": "Subscription & Payment System",
             "status": "pending",
             "priority": "high",
-            "context": "Monetization layer. Business model: Free tier (bring your own API key, full browser features) + Pro tier (monthly subscription with agent credits — no API key needed, Anthracite proxies LLM calls). The agent must be significantly better than open-source alternatives for people to pay. Depends on tasks 25 (agent improvements) and 28 (user auth).",
+            "context": "Monetization layer. Business model: Free tier (bring your own API key, full browser features) + Pro tier (monthly subscription with agent credits \u2014 no API key needed, Anthracite proxies LLM calls). The agent must be significantly better than open-source alternatives for people to pay. Depends on tasks 25 (agent improvements) and 28 (user auth).",
             "created_at": "2026-02-12T12:09:00.000000",
             "subtasks": [
                 {
-                    "id": "30.1",
+                    "id": "9.1",
                     "title": "Integrate payment provider",
                     "status": "pending",
                     "context": "Options: Stripe (industry standard, complex tax handling), Paddle (handles international tax/VAT automatically, simpler for solo dev). Paddle recommended for simpler setup. LemonSqueezy is another option."
                 },
                 {
-                    "id": "30.2",
+                    "id": "9.2",
                     "title": "Design pricing tiers",
                     "status": "pending",
                     "context": "Free: BYOK (bring your own API key), all browser features, local agent. Pro ($X/month): N agent credits (each credit = 1 agent task), Anthracite's API proxy (no key needed), priority support, cloud sync. Team: future (shared realms, admin controls)."
                 },
                 {
-                    "id": "30.3",
+                    "id": "9.3",
                     "title": "Build API proxy server for paid users",
                     "status": "pending",
                     "context": "Paid users' agent calls route through Anthracite's backend using our API keys. This backend meters usage, enforces rate limits, and bills per credit. Tech: serverless functions or a lightweight API on Railway/Fly.io. Keys stored server-side, never sent to client."
                 },
                 {
-                    "id": "30.4",
+                    "id": "9.4",
                     "title": "Implement credit/usage tracking",
                     "status": "pending",
                     "context": "Track: number of agent tasks run, tokens consumed, cost per task. Show usage in Settings: 'You've used 47 of 200 credits this month.' Warn at 80% and 100% usage."
                 },
                 {
-                    "id": "30.5",
+                    "id": "9.5",
                     "title": "Add subscription management in Settings",
                     "status": "pending",
                     "context": "Show: current plan, usage bar, billing cycle, upgrade/downgrade button (opens Stripe/Paddle portal), payment history."
                 },
                 {
-                    "id": "30.6",
+                    "id": "9.6",
                     "title": "Handle edge cases: payment failures, grace periods, downgrades",
                     "status": "pending",
                     "context": "On payment failure: 3-day grace period, then downgrade to free. On downgrade: keep all data, just disable proxy access. Never delete user data because of billing."
                 },
                 {
-                    "id": "30.7",
+                    "id": "9.7",
                     "title": "In-app upgrade prompts (tasteful, not aggressive)",
                     "status": "pending",
                     "context": "When free user without API key tries to run agent: show a subtle prompt explaining they need either their own key or a Pro subscription. Never block normal browsing. Never nag."
@@ -595,7 +394,7 @@
             ]
         },
         {
-            "id": "31",
+            "id": "10",
             "title": "Agent Task History & Saved Workflows",
             "status": "pending",
             "priority": "medium",
@@ -603,77 +402,77 @@
             "created_at": "2026-02-12T12:10:00.000000",
             "subtasks": [
                 {
-                    "id": "31.1",
+                    "id": "10.1",
                     "title": "Store agent task history",
                     "status": "pending",
                     "context": "For each agent run, save: user instruction, classified intent, steps taken (actions + screenshots), success/failure, duration, model used, tokens consumed. Store in SQLite alongside browsing history."
                 },
                 {
-                    "id": "31.2",
+                    "id": "10.2",
                     "title": "Add 'Task History' view in the UI",
                     "status": "pending",
                     "context": "New section accessible from sidebar or settings. Show past agent runs with step-by-step replay. Click a past task to see what the agent did. Option to re-run a task."
                 },
                 {
-                    "id": "31.3",
+                    "id": "10.3",
                     "title": "Implement agent context memory",
                     "status": "pending",
                     "context": "Agent should know: user's name, frequently visited sites, preferred services (Gmail vs Outlook, Google Flights vs Kayak), past task patterns. Build a lightweight user profile the agent references on each run."
                 },
                 {
-                    "id": "31.4",
-                    "title": "Saved workflows — repeatable multi-step agent tasks",
+                    "id": "10.4",
+                    "title": "Saved workflows \u2014 repeatable multi-step agent tasks",
                     "status": "pending",
                     "context": "Allow users to save an agent task as a 'workflow' (e.g., 'Check my email and summarize unread', 'Search for flights to X on Y date'). Show saved workflows in CommandBar or sidebar for one-click re-run."
                 }
             ]
         },
         {
-            "id": "32",
-            "title": "Agent Reliability — Edge Cases & Failure Handling",
+            "id": "11",
+            "title": "Agent Reliability \u2014 Edge Cases & Failure Handling",
             "status": "pending",
             "priority": "high",
             "context": "Common scenarios where the agent breaks or gets stuck. Fixing these is critical for user trust and the paid tier value proposition.",
             "created_at": "2026-02-12T12:11:00.000000",
             "subtasks": [
                 {
-                    "id": "32.1",
-                    "title": "CAPTCHA handling — detect and defer to user",
+                    "id": "11.1",
+                    "title": "CAPTCHA handling \u2014 detect and defer to user",
                     "status": "pending",
                     "context": "When agent encounters a CAPTCHA: pause agent, show the page to the user, prompt them to solve it, then resume agent automatically after CAPTCHA is cleared."
                 },
                 {
-                    "id": "32.2",
+                    "id": "11.2",
                     "title": "Handle popups, cookie banners, overlay modals",
                     "status": "pending",
                     "context": "These block element interaction. Agent should detect common patterns (cookie consent, newsletter popups, paywall modals) and dismiss them before attempting the actual task."
                 },
                 {
-                    "id": "32.3",
+                    "id": "11.3",
                     "title": "Handle iframes and shadow DOM",
                     "status": "pending",
                     "context": "Many sites use iframes (e.g., payment forms, embedded content) and shadow DOM (web components). The agent's DOM parser needs to traverse into these."
                 },
                 {
-                    "id": "32.4",
+                    "id": "11.4",
                     "title": "Handle file downloads and uploads",
                     "status": "pending",
                     "context": "Agent may trigger downloads (PDFs, CSVs) or need to upload files (forms, attachments). Integrate with Electron's download manager and file dialog."
                 },
                 {
-                    "id": "32.5",
-                    "title": "Improve form filling — dropdowns, date pickers, multi-step forms",
+                    "id": "11.5",
+                    "title": "Improve form filling \u2014 dropdowns, date pickers, multi-step forms",
                     "status": "pending",
                     "context": "These are the most common agent failures. Custom dropdown components (not native <select>) are especially hard. Date pickers vary wildly across sites."
                 },
                 {
-                    "id": "32.6",
-                    "title": "Timeout handling — don't spin forever",
+                    "id": "11.6",
+                    "title": "Timeout handling \u2014 don't spin forever",
                     "status": "pending",
                     "context": "Add per-step timeouts (30s default) and per-task timeouts (5min default). If stuck, try alternative approach or ask user for help. Never leave agent running silently."
                 },
                 {
-                    "id": "32.7",
+                    "id": "11.7",
                     "title": "Handle new tab/window creation during agent tasks",
                     "status": "pending",
                     "context": "Some sites open links in new tabs. Agent needs to follow into the new tab, complete the action, and return. Currently handled partially in main.ts setWindowOpenHandler but not integrated with agent flow."
@@ -681,7 +480,7 @@
             ]
         },
         {
-            "id": "33",
+            "id": "12",
             "title": "Error Reporting & Crash Recovery",
             "status": "pending",
             "priority": "medium",
@@ -689,31 +488,31 @@
             "created_at": "2026-02-12T12:12:00.000000",
             "subtasks": [
                 {
-                    "id": "33.1",
+                    "id": "12.1",
                     "title": "Integrate Sentry for Electron main + renderer crashes",
                     "status": "pending"
                 },
                 {
-                    "id": "33.2",
+                    "id": "12.2",
                     "title": "Add Python backend error reporting",
                     "status": "pending",
                     "context": "Catch uncaught exceptions in agent runs. Report to Sentry with task context (instruction, model, step count)."
                 },
                 {
-                    "id": "33.3",
-                    "title": "Implement crash recovery — restore tabs/realms on restart",
+                    "id": "12.3",
+                    "title": "Implement crash recovery \u2014 restore tabs/realms on restart",
                     "status": "pending",
                     "context": "On app crash, save current state. On next launch, detect crash and offer to restore previous session."
                 },
                 {
-                    "id": "33.4",
+                    "id": "12.4",
                     "title": "Add 'Report a Problem' in help menu / settings",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "34",
+            "id": "13",
             "title": "Chrome Data Import & First-Run Experience",
             "status": "pending",
             "priority": "medium",
@@ -721,37 +520,37 @@
             "created_at": "2026-02-12T12:13:00.000000",
             "subtasks": [
                 {
-                    "id": "34.1",
-                    "title": "Import bookmarks → map to Anthracite Realms/Docks",
+                    "id": "13.1",
+                    "title": "Import bookmarks \u2192 map to Anthracite Realms/Docks",
                     "status": "pending",
                     "context": "Chrome bookmarks are folders. Map top-level folders to Realms, sub-folders to Docks, bookmarks to pinned tabs or dock items."
                 },
                 {
-                    "id": "34.2",
+                    "id": "13.2",
                     "title": "Import browsing history into SQLite",
                     "status": "pending"
                 },
                 {
-                    "id": "34.3",
+                    "id": "13.3",
                     "title": "Import saved passwords (optional, offer to skip)",
                     "status": "pending",
                     "context": "Sensitive. Store in OS keychain if imported. Many users may prefer to skip and use a password manager."
                 },
                 {
-                    "id": "34.4",
+                    "id": "13.4",
                     "title": "First-run import wizard on initial launch",
                     "status": "pending",
-                    "context": "Detect installed browsers, offer to import. Clean, minimal UI matching Anthracite aesthetic. Steps: Welcome → Import → API Key Setup → Done."
+                    "context": "Detect installed browsers, offer to import. Clean, minimal UI matching Anthracite aesthetic. Steps: Welcome \u2192 Import \u2192 API Key Setup \u2192 Done."
                 },
                 {
-                    "id": "34.5",
+                    "id": "13.5",
                     "title": "Support Chrome, Brave, Edge, Firefox, Safari",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "35",
+            "id": "14",
             "title": "Keyboard Shortcuts & Command Palette",
             "status": "pending",
             "priority": "medium",
@@ -759,29 +558,29 @@
             "created_at": "2026-02-12T12:14:00.000000",
             "subtasks": [
                 {
-                    "id": "35.1",
+                    "id": "14.1",
                     "title": "Add Cmd+K / Ctrl+K command palette for all browser actions",
                     "status": "pending"
                 },
                 {
-                    "id": "35.2",
+                    "id": "14.2",
                     "title": "Add tab quick-switch with fuzzy search",
                     "status": "pending"
                 },
                 {
-                    "id": "35.3",
+                    "id": "14.3",
                     "title": "Document and audit all existing shortcuts",
                     "status": "pending"
                 },
                 {
-                    "id": "35.4",
+                    "id": "14.4",
                     "title": "Add customizable keybindings in settings",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "36",
+            "id": "15",
             "title": "Testing Infrastructure",
             "status": "pending",
             "priority": "medium",
@@ -789,73 +588,73 @@
             "created_at": "2026-02-12T12:15:00.000000",
             "subtasks": [
                 {
-                    "id": "36.1",
+                    "id": "15.1",
                     "title": "Set up Vitest for unit tests",
                     "status": "pending"
                 },
                 {
-                    "id": "36.2",
+                    "id": "15.2",
                     "title": "Write unit tests for core modules: history.ts, store.ts, settings.ts, classifier.py",
                     "status": "pending"
                 },
                 {
-                    "id": "36.3",
+                    "id": "15.3",
                     "title": "Set up Playwright for Electron E2E tests",
                     "status": "pending"
                 },
                 {
-                    "id": "36.4",
+                    "id": "15.4",
                     "title": "Write E2E tests: app launch, tab management, navigation, agent task execution",
                     "status": "pending"
                 },
                 {
-                    "id": "36.5",
+                    "id": "15.5",
                     "title": "Run tests in CI (GitHub Actions)",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "37",
-            "title": "Mobile Browser (Later Stage — iOS & Android)",
+            "id": "16",
+            "title": "Mobile Browser (Later Stage \u2014 iOS & Android)",
             "status": "pending",
             "priority": "low",
-            "context": "Separate project from the Electron desktop app. Do NOT start until desktop is stable and monetized. Major architectural decisions needed — mobile can't run Python locally, so agent tasks must go through a cloud backend. iOS requires WebKit (Apple policy). Android allows custom engines.",
+            "context": "Separate project from the Electron desktop app. Do NOT start until desktop is stable and monetized. Major architectural decisions needed \u2014 mobile can't run Python locally, so agent tasks must go through a cloud backend. iOS requires WebKit (Apple policy). Android allows custom engines.",
             "created_at": "2026-02-12T12:16:00.000000",
             "subtasks": [
                 {
-                    "id": "37.1",
+                    "id": "16.1",
                     "title": "Research & architecture planning",
                     "status": "pending",
                     "context": "Options: React Native + WebView, native Swift (iOS) + Kotlin (Android), or a hybrid. Determine which features carry over. Design mobile-specific UI (bottom nav, gesture-based tab switching). Plan cloud-based agent infrastructure."
                 },
                 {
-                    "id": "37.2",
+                    "id": "16.2",
                     "title": "Build iOS app",
                     "status": "pending",
                     "context": "Must use WKWebView (Apple policy). Swift recommended for best performance and App Store compliance."
                 },
                 {
-                    "id": "37.3",
+                    "id": "16.3",
                     "title": "Build Android app",
                     "status": "pending",
                     "context": "Can use custom Chromium or standard WebView. Kotlin recommended."
                 },
                 {
-                    "id": "37.4",
+                    "id": "16.4",
                     "title": "Cloud-based agent backend for mobile",
                     "status": "pending",
                     "context": "Mobile devices can't run the Python agent locally. Build a cloud API that runs browser-use tasks on server-side browsers. This is also the infrastructure needed for the paid proxy tier (task 30)."
                 },
                 {
-                    "id": "37.5",
+                    "id": "16.5",
                     "title": "App Store & Play Store submission",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "38",
+            "id": "17",
             "title": "Upgrade Application Menu & Native Features",
             "status": "pending",
             "priority": "medium",
@@ -863,32 +662,32 @@
             "created_at": "2026-02-13T08:10:00.000000",
             "subtasks": [
                 {
-                    "id": "38.1",
+                    "id": "17.1",
                     "title": "Implement 'File' menu (New Tab, New Window, Save Page As, Print)",
                     "status": "pending"
                 },
                 {
-                    "id": "38.2",
+                    "id": "17.2",
                     "title": "Implement 'Edit' menu (Undo, Redo, Cut, Copy, Paste, Select All, Find in Page)",
                     "status": "pending"
                 },
                 {
-                    "id": "38.3",
+                    "id": "17.3",
                     "title": "Implement 'View' menu (Reload, Force Reload, Toggle DevTools, Actual Size, Zoom In, Zoom Out, Toggle Full Screen)",
                     "status": "pending"
                 },
                 {
-                    "id": "38.4",
+                    "id": "17.4",
                     "title": "Implement 'History' menu (Back, Forward, Home, Show Full History, Clear Browsing Data)",
                     "status": "pending"
                 },
                 {
-                    "id": "38.5",
+                    "id": "17.5",
                     "title": "Implement 'Window' menu (Minimize, Zoom, Tile Window to Left/Right, Bring All to Front)",
                     "status": "pending"
                 },
                 {
-                    "id": "38.6",
+                    "id": "17.6",
                     "title": "Implement 'Help' menu (Report Issue, Keyboard Shortcuts, About Anthracite)",
                     "status": "pending"
                 }
